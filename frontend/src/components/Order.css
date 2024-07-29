@@ -1,0 +1,25 @@
+.order-container {
+    margin-top: 30px;
+}
+
+.order-container, th, td {
+    border-collapse: collapse; /*define a separação entre as bordar*/
+    padding: 10px;
+    text-align: left;
+    border: 1px solid rgb(160 160 160);
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tbody-container, td {
+    cursor: pointer;
+}
+
+tr:nth-child(even) {
+    background: #CCC
+}
+tr:nth-child(odd) {
+    background: #FFF
+}
