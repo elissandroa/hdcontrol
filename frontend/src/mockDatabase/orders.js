@@ -1,30 +1,32 @@
 export const orders = [
-    {
+  {
+    id: 1,
+    client: "MARIO",
+    amount: 850.0,
+    data_entrega: "pendente",
+    status: "pendente",
+    items: [
+      {
         id: 1,
-        client: "MARIO",
-        amount: 850.0,
-        data_entrega: "pendente",
-        status: "pendente",
+        description: "HD 500GB SAMSUNG DESK",
+        brand: "SAMSUNG",
+        price: 10.0,
+        quantity: 3,
+      },
+      {
+        id:12,
+        description:"HD 2TB SEAGATE DESK",
+        brand: "SEAGATE",
+        price: 40.0,
+        quantity: 8,
     },
     {
-        id: 2,
-        client: "Dirceu",
-        amount: 75.0,
-        data_entrega: "29/07/2024",
-        status:"pronto",
+        id:17,
+        description:"HD 1TB WD DESK",
+        brand: "WESTERN DIGITAL",
+        price: 20.0,
+        quantity: 10,
     },
-    {
-        id: 3,
-        client: "MARIO",
-        amount: 1450.0,
-        data_entrega: "pendente",
-        status: "pronto",
-    },
-    {
-        id: 4,
-        client: "MARIO",
-        amount: 2125.80,
-        data_entrega: "11/06/2024",
-        status: "pronto",
-    },
+    ],
+  },
 ];
