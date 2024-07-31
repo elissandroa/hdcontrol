@@ -13,13 +13,13 @@
     text-align: center;
 }
 
-.tbody-container, td {
-    cursor: pointer;
-}
-
 tr:nth-child(even) {
     background: #CCC
 }
 tr:nth-child(odd) {
     background: #FFF
+}
+
+.order-list-link a{
+    color: #000;
 }

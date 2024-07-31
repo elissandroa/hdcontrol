@@ -1,14 +1,14 @@
-export const client = [
+export const clients = [
     {
         id: 1,
-        name: "João Martins",
-        email: "joao@email.com",
+        name: "MARIO",
+        email: "mario@email.com",
         phone: "9999-9991",
     },
     {
         id: 2,
-        name: "Maria Aparecida",
-        email: "maria@email.com",
+        name: "DIRCEU",
+        email: "dirceu@email.com",
         phone: "9999-9992",
     },
     {

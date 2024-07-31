@@ -167,4 +167,4 @@ export const products = [
         brand: "HITACHI",
         price: 40.0,
     },
-]
+];
