@@ -1,26 +1,27 @@
 import './Order.css'
 import { useParams } from 'react-router-dom'
-import { orders } from '../mockDatabase/orders';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export const Order = () => {
     const { id } = useParams();
-    const order = orders[id - 1];
+    const [order, setOrder] = useState({});
 
-    const totalOrder = () => {
-        let total = 0;
-        order.items.forEach((value) => {
-           return total +=  (value.price * value.quantity);
-        })
-        return total;
-    }
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:8000/orders/${id}`)
+            .then((response) => setOrder(response.data));
+
+    }, [])
 
     return (
-        <div className='order-container'>
+
+        order && <div className='order-container'>
             <div className='order-header'>
                 <p>OS: {order.id}</p>
                 <p>Cliente: {order.client}</p>
-                <p>Valor: R$ {totalOrder().toFixed(2)}</p>
+                <p>Valor: R$ {parseFloat((order.amount)).toFixed(2)} </p>
                 <button>Editar</button>
                 <button>Excluir</button>
             </div>
@@ -38,15 +39,16 @@ export const Order = () => {
                 <tbody>
                     {order.items && order.items.map((item, key) => (
                         <tr key={key}>
-                        <td>{item.quantity}</td>
-                        <td>{item.description}</td>
-                        <td>{order.client}</td>
-                        <td>{item.price}</td>
-                        <td>R$ {(item.price * item.quantity).toFixed(2)}</td>
-                        <td>{order.data_entrega}</td>
-                     </tr>
+                            <td>{item[1]}</td>
+                            <td>{item[2]}</td>
+                            <td>{order.client}</td>
+                            <td>{item[3]}</td>
+                            <td>R$ {(item[1] * item[3]).toFixed(2)}</td>
+                            <td>{order.data_entrega}</td>
+                            <td>{item[0]}</td>
+                        </tr>
                     ))}
-                    
+
                 </tbody>
             </table>
         </div>

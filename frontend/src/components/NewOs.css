@@ -1,0 +1,46 @@
+.newos-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-label-container {
+    display: flex;
+    flex-direction: column;
+}
+
+ input, select {
+    width: 100%;
+    height: 40px;
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: blue;
+}
+
+#description {
+    font-size: 12px;
+}
+
+.fnt-12 {
+    font-size: 12px;
+}
+.input-buttons-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}

@@ -1,0 +1,366 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "description": "HD 500GB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 10
+    },
+    {
+      "id": 2,
+      "description": "HD 750GB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 10
+    },
+    {
+      "id": 3,
+      "description": "HD 1TB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 20
+    },
+    {
+      "id": 4,
+      "description": "HD 1.5TB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 40
+    },
+    {
+      "id": 5,
+      "description": "HD 2TB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 40
+    },
+    {
+      "id": 6,
+      "description": "HD 3TB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 40
+    },
+    {
+      "id": 7,
+      "description": "HD 4TB SAMSUNG DESK",
+      "brand": "SAMSUNG",
+      "price": 40
+    },
+    {
+      "id": 8,
+      "description": "HD 500GB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 10
+    },
+    {
+      "id": 9,
+      "description": "HD 750GB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 10
+    },
+    {
+      "id": 10,
+      "description": "HD 1TB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 20
+    },
+    {
+      "id": 11,
+      "description": "HD 1.5TB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 40
+    },
+    {
+      "id": 12,
+      "description": "HD 2TB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 40
+    },
+    {
+      "id": 13,
+      "description": "HD 3TB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 40
+    },
+    {
+      "id": 14,
+      "description": "HD 4TB SEAGATE DESK",
+      "brand": "SEAGATE",
+      "price": 40
+    },
+    {
+      "id": 15,
+      "description": "HD 500GB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 10
+    },
+    {
+      "id": 16,
+      "description": "HD 750GB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 10
+    },
+    {
+      "id": 17,
+      "description": "HD 1TB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 20
+    },
+    {
+      "id": 18,
+      "description": "HD 1.5TB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 40
+    },
+    {
+      "id": 19,
+      "description": "HD 2TB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 40
+    },
+    {
+      "id": 20,
+      "description": "HD 3TB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 40
+    },
+    {
+      "id": 21,
+      "description": "HD 4TB WD DESK",
+      "brand": "WESTERN DIGITAL",
+      "price": 40
+    },
+    {
+      "id": 22,
+      "description": "HD 500GB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 10
+    },
+    {
+      "id": 23,
+      "description": "HD 750GB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 10
+    },
+    {
+      "id": 24,
+      "description": "HD 1TB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 20
+    },
+    {
+      "id": 25,
+      "description": "HD 1.5TB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 40
+    },
+    {
+      "id": 26,
+      "description": "HD 2TB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 40
+    },
+    {
+      "id": 27,
+      "description": "HD 3TB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 40
+    },
+    {
+      "id": 28,
+      "description": "HD 4TB HITACHI DESK",
+      "brand": "HITACHI",
+      "price": 40
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "name": "MARIO",
+      " email": "mario@email.com",
+      "phone": "9999-9991"
+    },
+    {
+      "id": 2,
+      "name": "DIRCEU",
+      "email": "dirceu@email.com",
+      "phone": "9999-9992"
+    },
+    {
+      "id": 3,
+      "name": "Joel Filho",
+      "email": "joel@email.com",
+      "phone": "8888-8541"
+    },
+    {
+      "id": 4,
+      "name": "Pedro Soares",
+      "email": "pedro@email.com",
+      "phone": "8542-2547"
+    }
+  ],
+  "orders": [
+    {
+      "id": 5,
+      "client": "MARIO",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "1",
+          "HD 750GB SAMSUNG DESK",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          1,
+          "2",
+          "HD 2TB SAMSUNG DESK",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          2,
+          "3",
+          "HD 1.5TB SEAGATE DESK",
+          "44",
+          "4",
+          "4"
+        ],
+        [
+          3,
+          "2",
+          "HD 3TB SEAGATE DESK",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          4,
+          "2",
+          "HD 3TB SAMSUNG DESK",
+          "2",
+          "2",
+          "2"
+        ]
+      ]
+    },
+    {
+      "id": 1,
+      "client": "DIRCEU",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "1",
+          "HD 500GB SAMSUNG DESK",
+          "1",
+          "1",
+          "1"
+        ]
+      ]
+    },
+    {
+      "client": "Pedro Soares",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "20",
+          "HD 750GB SEAGATE DESK",
+          "60",
+          "serviço",
+          "observações"
+        ]
+      ],
+      "id": 6
+    },
+    {
+      "client": "DIRCEU",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "1",
+          "HD 750GB SEAGATE DESK",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          1,
+          "2",
+          "HD 1.5TB SAMSUNG DESK",
+          "25",
+          "1",
+          "1"
+        ],
+        [
+          2,
+          "1",
+          "HD 500GB SEAGATE DESK",
+          "25.75",
+          "CLEAR SMART",
+          "Firmware / Testes"
+        ]
+      ],
+      "id": 7
+    },
+    {
+      "client": "MARIO",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "14",
+          "HD 1TB SEAGATE DESK",
+          "40",
+          "Reset de Firmware e testes",
+          "HDS novos na caixa"
+        ]
+      ],
+      "id": 8
+    },
+    {
+      "client": "DIRCEU",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "25",
+          "HD 1.5TB SAMSUNG DESK",
+          "45",
+          "T-REX",
+          "FIRMWARE/TESTES"
+        ]
+      ],
+      "id": 9
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Elissandro",
+      "email": "elissandro@gmail.com",
+      "password": "1234",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "Pedro",
+      "email": "pedro@email.com",
+      "password": "1234",
+      "role": "User"
+    }
+  ]
+}

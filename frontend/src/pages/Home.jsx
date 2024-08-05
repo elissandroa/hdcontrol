@@ -1,8 +1,16 @@
+import { useEffect, useState } from 'react';
 import './Home.css'
-import {Orders} from './Orders';
-import { orders } from '../mockDatabase/orders';
+import { Orders } from './Orders';
+import axios from 'axios';
 
 export const Home = () => {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/orders")
+      .then((response) => setOrders(JSON.stringify(response.data)));
+  }, [])
+
   return (
     <div className='home-container'>
       <Orders orders={orders} />

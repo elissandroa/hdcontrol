@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./OrderList.css";
 import { Link } from "react-router-dom";
-export const OrderList = ({ orders }) => {
-  const [pedido, setPedido] = useState(orders);
+import axios from "axios";
 
-  const totalOrder = () => {
-    let total = 0;
-    pedido.items.forEach((value) => {
-      return total += (value.price * value.quantity);
-    })
-    return total;
-  }
+export const OrderList = () => {
 
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/orders")
+      .then((response) => setOrders(response.data));
+
+  }, [])
 
   return (
     <div className="order-container">
@@ -27,8 +27,8 @@ export const OrderList = ({ orders }) => {
           </tr>
         </thead>
         <tbody className="tbody-container">
-          {pedido &&
-            pedido.map((order, key) => (
+          {orders &&
+            orders.map((order, key) => (
               <tr key={key}>
                 <td>{order.id}</td>
                 <td>{order.client}</td>
