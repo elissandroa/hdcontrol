@@ -345,6 +345,157 @@
         ]
       ],
       "id": 9
+    },
+    {
+      "client": "DIRCEU",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "15",
+          "HD 500GB SAMSUNG DESK",
+          "5",
+          "Teste",
+          "Teste"
+        ]
+      ],
+      "id": 10
+    },
+    {
+      "client": "MARIO",
+      "amount": "",
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "3",
+          "HD 1.5TB SAMSUNG DESK",
+          "25",
+          "1",
+          "1"
+        ],
+        [
+          1,
+          "10",
+          "HD 4TB SAMSUNG DESK",
+          "40",
+          "2",
+          "123"
+        ]
+      ],
+      "id": 11
+    },
+    {
+      "client": "Joel Filho",
+      "amount": 0,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "25",
+          "HD 3TB SAMSUNG DESK",
+          "40",
+          "1",
+          "1"
+        ],
+        [
+          1,
+          "34",
+          "HD 1.5TB SEAGATE DESK",
+          "55",
+          "33",
+          "3"
+        ],
+        [
+          2,
+          "25",
+          "HD 4TB SAMSUNG DESK",
+          "45",
+          "1",
+          "1"
+        ]
+      ],
+      "id": 12
+    },
+    {
+      "client": "DIRCEU",
+      "amount": 0,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "2",
+          "HD 1TB SAMSUNG DESK",
+          "15",
+          "1",
+          "1"
+        ]
+      ],
+      "id": 13
+    },
+    {
+      "client": "MARIO",
+      "amount": 0,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "10",
+          "HD 750GB SAMSUNG DESK",
+          "20",
+          "1",
+          "1"
+        ]
+      ],
+      "id": 14
+    },
+    {
+      "client": "MARIO",
+      "amount": 200,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "10",
+          "HD 500GB SAMSUNG DESK",
+          "20",
+          "1",
+          "20"
+        ]
+      ],
+      "id": 15
+    },
+    {
+      "client": "MARIO",
+      "amount": 2000,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "40",
+          "HD 2TB WD DESK",
+          "40",
+          "T-REX",
+          "FIRMWARE/TESTE"
+        ],
+        [
+          1,
+          "20",
+          "HD 1TB WD DESK",
+          "20",
+          "T-REX",
+          "FIRMWARE/TESTES"
+        ]
+      ],
+      "id": 16
     }
   ],
   "users": [
