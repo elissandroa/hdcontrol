@@ -15,6 +15,7 @@ export const OrderList = () => {
 
   return (
     <div className="order-container">
+      <h2>Relação de ordens de serviço em execução</h2>
       <table className="table-container">
         <thead>
           <tr className="th-container">

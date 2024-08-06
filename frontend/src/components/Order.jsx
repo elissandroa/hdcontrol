@@ -6,14 +6,28 @@ import axios from "axios";
 export const Order = () => {
   const { id } = useParams();
   const [order, setOrder] = useState({});
-  console.log(JSON.stringify(order.items));
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/orders/${id}`)
       .then((response) => setOrder(response.data));
   }, [id]);
-
-  return (
+    
+  
+  const updateOrder = () => {
+    const OrderUpdate = {
+      client: order.client,
+      amount: order.amount,
+      data_entrega: order.data_entrega,
+      status: order.status,
+      items: order.items,
+    };
+    setOrder(OrderUpdate);
+    if (order) {
+      axios.put(`http://localhost:8000/orders/${order.id}`, order);
+    }
+  }
+   return (
     order && (
       <div className="order-container">
         <div className="order-header">
@@ -32,6 +46,8 @@ export const Order = () => {
               <th>Un</th>
               <th>Total</th>
               <th>Entrega</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -45,12 +61,12 @@ export const Order = () => {
                   <td>R$ {(item[1] * item[3]).toFixed(2)}</td>
                   <td>{order.data_entrega}</td>
                   <td>{item[0]}</td>
+                  <td>Editar</td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
     )
-  )
-  
+  );
 };

@@ -12,10 +12,10 @@ export const NewOs = ({ clients, products }) => {
   const [service, setService] = useState("");
   const [notes, setNotes] = useState("");
   const [id, setId] = useState(0);
-  const [count, setCount] = useState(0);
+  const [setCount] = useState(0);
   const [order, setOrder] = useState(null);
   const [client, setClient] = useState("");
-  const [amount, setAmount] = useState(0);
+
   const navigate = useNavigate();
 
   const addItem = (e) => {
