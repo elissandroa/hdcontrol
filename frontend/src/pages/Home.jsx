@@ -13,7 +13,7 @@ export const Home = () => {
 
   return (
     <div className='home-container'>
-      <Orders orders={orders} />
+      <Orders orders={orders}/>
     </div>
   )
 }

@@ -198,6 +198,7 @@
   "orders": [
     {
       "client": "MARIO",
+<<<<<<< HEAD
       "amount": 400,
       "data_entrega": "pendente",
       "status": "pendente",
@@ -216,12 +217,16 @@
     {
       "client": "MARIO",
       "amount": 345,
+=======
+      "amount": 1,
+>>>>>>> dd049b075808b82d3c4d44f6a6f3fa771f4bda2b
       "data_entrega": "pendente",
       "status": "pendente",
       "items": [
         [
           0,
           "1",
+<<<<<<< HEAD
           "HD 750GB SEAGATE DESK",
           "25",
           "12",
@@ -234,6 +239,37 @@
           "10",
           "TROCA DE ID",
           "WDC-PURX20"
+=======
+          "HD 500GB SAMSUNG DESK",
+          "1",
+          "11",
+          "1"
+        ]
+      ],
+      "id": 1
+    },
+    {
+      "client": "MARIO",
+      "amount": 400,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "items": [
+        [
+          0,
+          "5",
+          "HD 1.5TB SAMSUNG DESK",
+          "20",
+          "teste",
+          "teste"
+        ],
+        [
+          1,
+          "10",
+          "HD 750GB SEAGATE DESK",
+          "30",
+          "1",
+          "1"
+>>>>>>> dd049b075808b82d3c4d44f6a6f3fa771f4bda2b
         ]
       ],
       "id": 2
