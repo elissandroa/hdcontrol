@@ -16,3 +16,7 @@
 .order-header button {
     padding: 10px 20px;
 }
+
+.item-Edit:hover {
+    cursor: pointer;
+}

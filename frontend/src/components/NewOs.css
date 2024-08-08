@@ -28,8 +28,12 @@
     border: none;
     text-align: center;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     color: blue;
+}
+
+select::placeholder {
+    font-size: 12px;
 }
 
 #description {

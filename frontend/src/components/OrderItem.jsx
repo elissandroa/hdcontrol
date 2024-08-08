@@ -21,7 +21,7 @@ export const OrderItem = ({ items, deleteItem }) => {
                             <td>{prodItem[1]}</td>
                             <td>{prodItem[2]}</td>
                             <td>R$ {parseFloat(prodItem[3]).toFixed(2)}</td>
-                            <td> R$ {(prodItem[3] * prodItem[3]).toFixed(2)}</td>
+                            <td> R$ {(prodItem[1] * prodItem[3]).toFixed(2)}</td>
                             <td>{prodItem[4]}</td>
                             <td>{prodItem[5]}</td>
                             <td onClick={() => deleteItem(prodItem[1])}>Delete</td>

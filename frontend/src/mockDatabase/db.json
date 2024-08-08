@@ -197,154 +197,46 @@
   ],
   "orders": [
     {
-      "id": 5,
       "client": "MARIO",
-      "amount": "",
+      "amount": 400,
       "data_entrega": "pendente",
       "status": "pendente",
       "items": [
         [
           0,
-          "1",
-          "HD 750GB SAMSUNG DESK",
-          "1",
-          "1",
-          "1"
-        ],
-        [
-          1,
-          "2",
-          "HD 2TB SAMSUNG DESK",
-          "2",
-          "2",
-          "2"
-        ],
-        [
-          2,
-          "3",
-          "HD 1.5TB SEAGATE DESK",
-          "44",
-          "4",
-          "4"
-        ],
-        [
-          3,
-          "2",
-          "HD 3TB SEAGATE DESK",
-          "2",
-          "2",
-          "2"
-        ],
-        [
-          4,
-          "2",
-          "HD 3TB SAMSUNG DESK",
-          "2",
-          "2",
-          "2"
-        ]
-      ]
-    },
-    {
-      "id": 1,
-      "client": "DIRCEU",
-      "amount": "",
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "items": [
-        [
-          0,
-          "1",
-          "HD 500GB SAMSUNG DESK",
-          "1",
-          "1",
-          "1"
-        ]
-      ]
-    },
-    {
-      "client": "Pedro Soares",
-      "amount": "",
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "items": [
-        [
-          0,
-          "20",
-          "HD 750GB SEAGATE DESK",
-          "60",
-          "serviço",
-          "observações"
-        ]
-      ],
-      "id": 6
-    },
-    {
-      "client": "DIRCEU",
-      "amount": "",
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "items": [
-        [
-          0,
-          "1",
-          "HD 750GB SEAGATE DESK",
-          "1",
-          "1",
-          "1"
-        ],
-        [
-          1,
-          "2",
-          "HD 1.5TB SAMSUNG DESK",
-          "25",
-          "1",
-          "1"
-        ],
-        [
-          2,
-          "1",
-          "HD 500GB SEAGATE DESK",
-          "25.75",
-          "CLEAR SMART",
-          "Firmware / Testes"
-        ]
-      ],
-      "id": 7
-    },
-    {
-      "client": "MARIO",
-      "amount": "",
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "items": [
-        [
-          0,
-          "14",
-          "HD 1TB SEAGATE DESK",
+          "10",
+          "HD 2TB WD DESK",
           "40",
-          "Reset de Firmware e testes",
-          "HDS novos na caixa"
+          "T-REX",
+          "TESTES VARIADOS"
         ]
       ],
-      "id": 8
+      "id": 1
     },
     {
-      "client": "DIRCEU",
-      "amount": "",
+      "client": "MARIO",
+      "amount": 345,
       "data_entrega": "pendente",
       "status": "pendente",
       "items": [
         [
           0,
+          "1",
+          "HD 750GB SEAGATE DESK",
           "25",
-          "HD 1.5TB SAMSUNG DESK",
-          "45",
-          "T-REX",
-          "FIRMWARE/TESTES"
+          "12",
+          "testes"
+        ],
+        [
+          1,
+          "32",
+          "HD 2TB HITACHI DESK",
+          "10",
+          "TROCA DE ID",
+          "WDC-PURX20"
         ]
       ],
-      "id": 9
+      "id": 2
     }
   ],
   "users": [

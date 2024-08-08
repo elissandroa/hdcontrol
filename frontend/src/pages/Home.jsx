@@ -5,10 +5,10 @@ import axios from 'axios';
 
 export const Home = () => {
   const [orders, setOrders] = useState([]);
-
+  
   useEffect(() => {
     axios.get("http://localhost:8000/orders")
-      .then((response) => setOrders(JSON.stringify(response.data)));
+      .then((response) => setOrders(response.data));
   }, [])
 
   return (

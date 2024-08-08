@@ -16,9 +16,8 @@ export const NewOs = ({ clients, products }) => {
     const [count, setCount] = useState(0);
     const [order, setOrder] = useState(null);
     const [client, setClient] = useState("");
-    const [amount, setAmount] = useState(0);
     const navigate = useNavigate();
-
+    let amount = 0;
 
     const addItem = (e) => {
         e.preventDefault();
@@ -31,7 +30,6 @@ export const NewOs = ({ clients, products }) => {
         setId((prev) => prev + 1);
         items.push([id, quantity, description, price, service, notes]);
         ResetOrdem();
-
     }
 
     const ResetOrdem = () => {
@@ -52,23 +50,23 @@ export const NewOs = ({ clients, products }) => {
 
     const totalAmount = () => {
         let total = 0;
-        items.forEach((item) => {
-            setAmount((prev) => prev + (item[1] * item[3]));
-        })
-
-        alert(amount);
-
+        if(items){
+            items.forEach((item) => {
+                total += (item[1] * item[3]);
+            })
+           amount = total;
+        }
+        return amount;
     }
-
 
 
     const createOrder = (e) => {
         e.preventDefault();
         if (client) {
-
+            totalAmount();
             const newOrder = {
                 client: client,
-                amount: "",
+                amount: amount,
                 data_entrega: "pendente",
                 status: "pendente",
                 items: items
@@ -92,19 +90,19 @@ export const NewOs = ({ clients, products }) => {
             <form>
                 <div className="form-container">
                     <div className="input-label-container">
-                    <div>
-                        <label htmlFor="cliente">Cliente:</label>
-                    </div>
-                    <div>
-                        <select name="Client" id="client" onChange={(e) => setClient(e.target.value)}>
-                            <option selected className="option-client">Selecione um Cliente</option>
-                            {
-                                clients && clients.map((client, key) => (
-                                    <option key={key} value={client.name}>{client.name}</option>
-                                ))
-                            }
-                        </select>
-                    </div>
+                        <div>
+                            <label htmlFor="cliente">Cliente:</label>
+                        </div>
+                        <div>
+                            <select name="Client"  id="client" onChange={(e) => setClient(e.target.value)}>
+                                <option defaultValue="Selecione um Cliente" className="option-client">Selecione um Cliente</option>
+                                {
+                                    clients && clients.map((client, key) => (
+                                        <option key={key} value={client.name}>{client.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
                     </div>
                     <div className="input-label-container">
                         <div>
@@ -120,62 +118,62 @@ export const NewOs = ({ clients, products }) => {
                         </div>
                     </div>
                     <div className="input-label-container">
-                    <div>
-                        <label htmlFor="price">Preço:</label>
+                        <div>
+                            <label htmlFor="price">Preço:</label>
+                        </div>
+                        <div>
+                            <input
+                                type="number"
+                                name="price"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            type="number"
-                            name="price"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                        />
-                    </div>
-                        </div>        
                     <div className="input-label-container">
-                    <div>
-                        <label htmlFor="service">Serviço:</label>
+                        <div>
+                            <label htmlFor="service">Serviço:</label>
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                name="service"
+                                value={service}
+                                onChange={(e) => setService(e.target.value)}
+                                className="fnt-12"
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            type="text"
-                            name="service"
-                            value={service}
-                            onChange={(e) => setService(e.target.value)}
-                            className="fnt-12"
-                        />
+                    <div className="input-label-container">
+                        <div>
+                            <label htmlFor="notes">Observações:</label>
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                name="notes"
+                                value={notes}
+                                onChange={(e) => setNotes(e.target.value)}
+                                className="fnt-12"
+                            />
+                        </div>
                     </div>
+                    <div className="input-label-container">
+                        <div>
+                            <label htmlFor="product">Descrição</label>
+                        </div>
+                        <div>
+                            <select name="description" id="description" onChange={(e) => setDescription(e.target.value)}>
+                                <option selected>Selecione um produto</option>
+                                {
+                                    products && products.map((prod, key) => (
+                                        <option key={key} value={prod.description}>{prod.description}
+                                        </option>
+                                    ))}
+                            </select>
+                        </div>
                     </div>
-                   <div className="input-label-container">
-                   <div>
-                        <label htmlFor="notes">Observações:</label>
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            name="notes"
-                            value={notes}
-                            onChange={(e) => setNotes(e.target.value)}
-                            className="fnt-12"
-                        />
-                    </div>
-                   </div>
-                   <div className="input-label-container">
-                   <div>
-                        <label htmlFor="product">Descrição</label>
-                    </div>
-                    <div>
-                        <select name="description" id="description" onChange={(e) => setDescription(e.target.value)}>
-                            <option selected>Selecione um produto</option>
-                            {
-                                products && products.map((prod, key) => (
-                                    <option key={key} value={prod.description}>{prod.description}
-                                    </option>
-                                ))}
-                        </select>
-                    </div>
-                   </div>
-                    
+
                     <div className="input-buttons-container">
                         <div>
                             <button onClick={addItem}>Add</button>
