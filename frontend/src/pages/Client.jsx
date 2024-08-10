@@ -2,6 +2,6 @@ import './Client.css'
 
 export const Client = () => {
   return (
-    <div>Client</div>
+    <h1>Client</h1>
   )
 }

@@ -18,3 +18,31 @@
 .item-Edit:hover {
     cursor: pointer;
 }
+
+.button-save {
+    width: 120px;
+    height: 100px;
+}
+
+.tr-hover:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.button-save-container {
+    margin-bottom: 10px;
+}
+
+.finish-os-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-pay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

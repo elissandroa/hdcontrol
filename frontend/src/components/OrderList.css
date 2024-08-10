@@ -1,5 +1,10 @@
 .order-container {
     margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .order-container, th, td {
@@ -11,6 +16,10 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+}
+
+td {
+    width:300px;
 }
 
 tr:nth-child(even) {
@@ -27,4 +36,12 @@ tr:nth-child(odd) {
 .table-container {
     margin-bottom: 100px;
 
+}
+
+.td-width-60 {
+    width: 60px;
+}
+
+.td-width-220 {
+    width: 220px;
 }

@@ -198,14 +198,14 @@
   "orders": [
     {
       "client": "MARIO",
-<<<<<<< HEAD
-      "amount": 400,
-      "data_entrega": "pendente",
-      "status": "pendente",
+      "amount": 200,
+      "data_entrega": "9/7/2024",
+      "status": "Pendente",
+      "payed": true,
       "items": [
         [
           0,
-          "10",
+          "5",
           "HD 2TB WD DESK",
           "40",
           "T-REX",
@@ -216,17 +216,14 @@
     },
     {
       "client": "MARIO",
-      "amount": 345,
-=======
-      "amount": 1,
->>>>>>> dd049b075808b82d3c4d44f6a6f3fa771f4bda2b
-      "data_entrega": "pendente",
-      "status": "pendente",
+      "amount": 1470,
+      "data_entrega": "Pendente",
+      "status": "Pendente",
+      "payed": false,
       "items": [
         [
           0,
-          "1",
-<<<<<<< HEAD
+          "57",
           "HD 750GB SEAGATE DESK",
           "25",
           "12",
@@ -234,45 +231,110 @@
         ],
         [
           1,
-          "32",
+          "57",
           "HD 2TB HITACHI DESK",
           "10",
           "TROCA DE ID",
           "WDC-PURX20"
-=======
-          "HD 500GB SAMSUNG DESK",
-          "1",
-          "11",
-          "1"
-        ]
-      ],
-      "id": 1
-    },
-    {
-      "client": "MARIO",
-      "amount": 400,
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "items": [
-        [
-          0,
-          "5",
-          "HD 1.5TB SAMSUNG DESK",
-          "20",
-          "teste",
-          "teste"
-        ],
-        [
-          1,
-          "10",
-          "HD 750GB SEAGATE DESK",
-          "30",
-          "1",
-          "1"
->>>>>>> dd049b075808b82d3c4d44f6a6f3fa771f4bda2b
         ]
       ],
       "id": 2
+    },
+    {
+      "client": "DIRCEU",
+      "amount": 140,
+      "data_entrega": "pendente",
+      "status": "Pendente",
+      "payed": false,
+      "items": [
+        [
+          0,
+          "4",
+          "HD 500GB SEAGATE DESK",
+          "5",
+          "CLEAR SMART",
+          "TESTES E CLEAR"
+        ],
+        [
+          1,
+          "4",
+          "HD 1TB WD DESK",
+          "30",
+          "T-REX",
+          "FIRMWARE/TESTES/CLEAR"
+        ]
+      ],
+      "id": 3
+    },
+    {
+      "client": "DIRCEU",
+      "amount": 1380,
+      "data_entrega": "Pendente",
+      "status": "Pendente",
+      "payed": false,
+      "items": [
+        [
+          0,
+          "21",
+          "HD 4TB SAMSUNG DESK",
+          "30",
+          "REPARO",
+          "PC-3000"
+        ],
+        [
+          1,
+          "22",
+          "HD 3TB SEAGATE DESK",
+          "25",
+          "REPARO",
+          "MRT"
+        ],
+        [
+          2,
+          "20",
+          "HD 500GB SEAGATE DESK",
+          "10",
+          "REPARO",
+          "MRT"
+        ]
+      ],
+      "id": 4
+    },
+    {
+      "client": "DIRCEU",
+      "amount": 7500,
+      "data_entrega": "pendente",
+      "status": "Pendente",
+      "payed": true,
+      "items": [
+        [
+          0,
+          "1500",
+          "HD 500GB SAMSUNG DESK",
+          "5",
+          "CLEAR SMART",
+          "HDS SEMI NOVOS"
+        ]
+      ],
+      "id": 5
+    },
+    {
+      "client": "MARIO",
+      "amount": 4508.7,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "payed": false,
+      "items": [
+        [
+          0,
+          "30",
+          "HD 3TB SAMSUNG DESK",
+          "150.29",
+          "reset",
+          "Teste"
+        ]
+      ],
+      "id": 6
     }
   ],
   "users": [
