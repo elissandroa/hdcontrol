@@ -256,13 +256,14 @@
     },
     {
       "client": "DIRCEU",
+      "amount": 1164,
       "data_entrega": "14/7/2024",
       "status": "Pendente",
       "payed": false,
       "items": [
         {
           "id": 0,
-          "quantity": "70",
+          "quantity": "126",
           "description": "HD 1.5TB SAMSUNG DESK",
           "price": "1",
           "service": "1",
@@ -542,6 +543,40 @@
         }
       ],
       "id": 11
+    },
+    {
+      "client": "MARIO",
+      "amount": 170,
+      "data_entrega": "pendente",
+      "status": "Pendente",
+      "payed": false,
+      "items": [
+        {
+          "id": 0,
+          "quantity": "3",
+          "description": "HD 750GB WD DESK",
+          "price": "10",
+          "service": "T-REX",
+          "notes": "FIRMWARE/TESTES"
+        },
+        {
+          "id": 1,
+          "quantity": "3",
+          "description": "HD 1TB WD DESK",
+          "price": "20",
+          "service": "T-REX",
+          "notes": "FIRMWARE/TESTES"
+        },
+        {
+          "id": 2,
+          "quantity": "2",
+          "description": "HD 1.5TB WD DESK",
+          "price": "40",
+          "service": "T-REX",
+          "notes": "FIRMWARE/TESTES"
+        }
+      ],
+      "id": 12
     }
   ],
   "users": [
