@@ -18,13 +18,13 @@ export const OrderItem = ({ items, deleteItem }) => {
                 <tbody>
                     {items && items.map((prodItem, key) => (
                         <tr key={key}>
-                            <td>{prodItem[1]}</td>
-                            <td>{prodItem[2]}</td>
-                            <td>R$ {parseFloat(prodItem[3]).toFixed(2)}</td>
-                            <td> R$ {(prodItem[1] * prodItem[3]).toFixed(2)}</td>
-                            <td>{prodItem[4]}</td>
-                            <td>{prodItem[5]}</td>
-                            <td onClick={() => deleteItem(prodItem[1])}>Delete</td>
+                            <td>{prodItem.quantity}</td>
+                            <td>{prodItem.description}</td>
+                            <td>R$ {parseFloat(prodItem.price).toFixed(2)}</td>
+                            <td> R$ {(prodItem.quantity * prodItem.price).toFixed(2)}</td>
+                            <td>{prodItem.service}</td>
+                            <td>{prodItem.notes}</td>
+                            <td onClick={() => deleteItem(prodItem.id)}>Delete</td>
                         </tr>
                     ))}
                 </tbody>

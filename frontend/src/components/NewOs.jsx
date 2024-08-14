@@ -14,9 +14,10 @@ export const NewOs = ({ clients, products }) => {
   const [notes, setNotes] = useState("");
   const [id, setId] = useState(0);
   const [count, setCount] = useState(0);
-  const [order, setOrder] = useState(null);
   const [client, setClient] = useState("");
   const navigate = useNavigate();
+  const [render, setRender] = useState(0);
+
   let amount = 0;
 
   const addItem = (e) => {
@@ -28,7 +29,7 @@ export const NewOs = ({ clients, products }) => {
       return;
     }
     setId((prev) => prev + 1);
-    items.push([id, quantity, description, price, service, notes]);
+    items.push({ id, quantity, description, price, service, notes });
     ResetOrdem();
   }
 
@@ -43,8 +44,7 @@ export const NewOs = ({ clients, products }) => {
 
 
   const deleteItem = (index) => {
-    alert(index);
-    const itemsAfterDeleted = items.filter((item) => item[1] !== index);
+    const itemsAfterDeleted = items.filter((item) => item.id !== index);
     setItems(itemsAfterDeleted);
     ResetOrdem();
     setCount((prev) => prev - 1);
@@ -54,7 +54,7 @@ export const NewOs = ({ clients, products }) => {
     let total = 0;
     if (items) {
       items.forEach((item) => {
-        total += (item[1] * item[3]);
+        total += (item.quantity * item.price);
       })
       amount = total;
     }
@@ -62,23 +62,20 @@ export const NewOs = ({ clients, products }) => {
   }
 
 
-  const createOrder = (e) => {
+  const createOrder = async (e) => {
     e.preventDefault();
     if (client) {
       totalAmount();
-      const newOrder = {
+      const order = {
         client: client,
         amount: amount,
         data_entrega: "pendente",
         status: "pendente",
-        payed:false,
+        payed: false,
         items: items
       }
-      setOrder(newOrder);
-      if (order) {
-        axios.post("http://localhost:8000/orders/", order);
-        navigate('/');
-      }
+      axios.post("http://localhost:8000/orders/", order);
+      navigate('/');
     } else {
       alert("Informe o cliente");
     }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './FormAddItem.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export const FormAddItem = ({id}) => {
+export const FormAddItem = ({ id, OnSaveEdit }) => {
     const [description, setDescription] = useState([]);
     const [quantity, setQuantity] = useState(0);
     const [price, setPrice] = useState(0);
@@ -10,28 +11,78 @@ export const FormAddItem = ({id}) => {
     const [notes, setNotes] = useState("");
     const [order, setOrder] = useState({});
     const [products, setProducts] = useState([]);
-    const [items, setItems] = useState([]);
+    const [amount, setAmount] = useState(order.amount);
 
-   
+    const navigate = useNavigate();
+    let itemsEdit;
+
+
     useEffect(() => {
-        axios.get(`http://localhost:8000/orders/${id}`)
-        .then((response) => setOrder(response.data));
-        axios.get("http://localhost:8000/products")
-        .then((response) => setProducts(response.data));
+        const getData = async () => {
+            await axios.get(`http://localhost:8000/orders/${id}`)
+                .then((response) => setOrder(response.data));
+            await axios.get("http://localhost:8000/products")
+                .then((response) => setProducts(response.data));
+        }
+        getData();
     }, [])
 
+    const totalAmount = () => {
+        let total = 0;
+        if (itemsEdit) {
+            itemsEdit.forEach((item) => {
+                total += (item.quantity * item.price);
+            })
+            return total;
+        }
+        setAmount(total);
+    }
 
-   let lista = [order.items];
-   const newId = lista.length + 1;
-   lista.push([[newId, quantity, description, price, service, notes]]);
+    const handleSubmitNewItem = (e) => {
+        e.preventDefault();
+         const itemAdd = {
+            "id": order.items.length,
+            "quantity": quantity,
+            "description": description,
+            "price": price,
+            "service": service,
+            "notes": notes
+        }
+        if (!order) return;
+        const item = itemAdd;
+        if (!item) return;
+        if (![order.items][0]) return;
+        [order.items][0].push(item);
+        itemsEdit = order.items;
+        insertItem();
+        
+    }
 
-   
-console.log(lista);
+    const insertItem = async () => {
+        const newOrder = {
+            client: order.client,
+            amount: amount,
+            data_entrega: order.data_entrega,
+            status: order.status,
+            payed: order.payed,
+            items: order.items
+        }
+        setOrder(newOrder);
+        if (order) {
+            await axios.put(`http://localhost:8000/orders/${id}`, order);
+        }
+        navigate(`/`);
+    }
+
+
+    const buttonAdicionar = () => {
+        alert("Adicionado!");
+    }
 
 
 
     return (
-        <form className='os-edit-container'>
+        <form className='os-edit-container' onSubmit={handleSubmitNewItem}>
             <div>
                 <input
                     type="number"
@@ -73,9 +124,7 @@ console.log(lista);
                         ))}
                 </select>
             </div>
-            <div>
-                <button>Adicionar</button>
-            </div>
+            <button>Adicionar</button>
         </form>
     )
 }

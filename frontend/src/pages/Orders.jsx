@@ -7,7 +7,6 @@ export const Orders = ({ orders }) => {
 
 
     <div className="orders-container">
-      <h2>Relação de ordens de serviço em execução</h2>
       {orders.length > 0 && < OrderList orders={orders} />}
     </div>
   );

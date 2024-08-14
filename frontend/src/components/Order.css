@@ -1,5 +1,3 @@
-
-
 .order-header {
     display: flex;
     justify-content: start;
@@ -46,3 +44,12 @@
     align-items: center;
     gap: 10px;
 }
+
+.btn-delete {
+    z-index: 1000;
+}
+
+.btn-delete:hover {
+    color: red;
+}
+
