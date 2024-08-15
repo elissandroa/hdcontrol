@@ -5,14 +5,15 @@ import { useNavigate } from 'react-router-dom';
 
 export const FormAddItem = ({ id, OnSaveEdit }) => {
     const [description, setDescription] = useState([]);
-    const [quantity, setQuantity] = useState(0);
-    const [price, setPrice] = useState(0);
+    const [quantity, setQuantity] = useState();
+    const [price, setPrice] = useState();
     const [service, setService] = useState("");
     const [notes, setNotes] = useState("");
     const [order, setOrder] = useState({});
     const [products, setProducts] = useState([]);
     const [amount, setAmount] = useState(order.amount);
-
+    const [visible, setVisible] = useState(true);
+ 
     const navigate = useNavigate();
     let itemsEdit;
 
@@ -39,8 +40,7 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
     }
 
     const handleSubmitNewItem = (e) => {
-        e.preventDefault();
-         const itemAdd = {
+        const itemAdd = {
             "id": order.items.length,
             "quantity": quantity,
             "description": description,
@@ -50,28 +50,26 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
         }
         if (!order) return;
         const item = itemAdd;
-        if (!item) return;
         if (![order.items][0]) return;
         [order.items][0].push(item);
         itemsEdit = order.items;
         insertItem();
-        
+
     }
 
     const insertItem = async () => {
         const newOrder = {
             client: order.client,
-            amount: amount,
+            amount: totalAmount(),
             data_entrega: order.data_entrega,
             status: order.status,
             payed: order.payed,
             items: order.items
         }
-        setOrder(newOrder);
-        if (order) {
-            await axios.put(`http://localhost:8000/orders/${id}`, order);
-        }
-        navigate(`/`);
+        await axios.put(`http://localhost:8000/orders/${id}`, newOrder);
+        await axios.get(`http://localhost:8000/orders/${id}`)
+        .then((response) => setOrder(response.data));
+        setVisible(false);
     }
 
 
@@ -124,7 +122,9 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
                         ))}
                 </select>
             </div>
-            <button>Adicionar</button>
+            <div>
+                <button className='btnNewItem'>Adicionar</button>
+            </div>
         </form>
     )
 }

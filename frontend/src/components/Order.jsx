@@ -57,6 +57,8 @@ export const Order = () => {
 
 
         await axios.put(`http://localhost:8000/orders/${osId}`, newOrder);
+        await axios.get(`http://localhost:8000/orders/${osId}`)
+        .then((response) => setOrder(response.data));
 
     }
 
@@ -108,7 +110,6 @@ export const Order = () => {
 
     const OnleDelete = async (osId) => {
         await axios.delete(`http://localhost:8000/orders/${osId}`);
-        console.log(`Os ${osId} deletada !`);
         navigate('/');
     }
 
@@ -193,7 +194,7 @@ export const Order = () => {
                                 <input type="checkBox" name="payed" id="payed" onClick={() => OnPay(OnSaveEdit("payed"))} />
                                 <span><label htmlFor="Pago">Pago</label> </span>
                                 <div>
-                                    <button onClick={() => OnFormVisibility(setVisible(false), setFormAddVisible(true))}>New</button>
+                                    <button onClick={() => OnFormVisibility(setVisible(false), setFormAddVisible(true))}>Adicionar item</button>
                                 </div>
                             </div>
 
@@ -209,6 +210,8 @@ export const Order = () => {
                             <th>Descrição</th>
                             <th>Un</th>
                             <th>Total</th>
+                            <th>Serviço</th>
+                            <th>Observações</th>
                             <th>Entrega</th>
                             {visible && <th>--+--</th>}
                         </tr>}
@@ -241,6 +244,8 @@ export const Order = () => {
                                 <td>{item.description}</td>
                                 <td>R$ {parseFloat(item.price).toFixed(2)}</td>
                                 <td>R$ {(item.quantity * item.price).toFixed(2)}</td>
+                                <td>{item.service}</td>
+                                <td>{item.notes}</td>
                                 <td>{order.data_entrega}</td>
                                 {visible && <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}>Excluir</td>}
                             </tr>

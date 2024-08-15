@@ -197,38 +197,56 @@
   ],
   "orders": [
     {
-      "client": "MARIO",
-      "amount": 170,
-      "data_entrega": "14/7/2024",
+      "client": "DIRCEU",
+      "amount": 13,
+      "data_entrega": "pendente",
       "status": "Pronto",
       "payed": false,
       "items": [
         {
-          "id": 0,
+          "id": 1,
           "quantity": "3",
-          "description": "HD 750GB WD DESK",
-          "price": "10",
-          "service": "T-REX",
-          "notes": "FIRMWARE/TESTES"
+          "description": "HD 4TB SAMSUNG DESK",
+          "price": "3",
+          "service": "3",
+          "notes": "3"
         },
         {
           "id": 1,
           "quantity": "3",
-          "description": "HD 1TB WD DESK",
-          "price": "20",
-          "service": "T-REX",
-          "notes": "FIRMWARE/TESTES"
+          "description": "HD 1.5TB SAMSUNG DESK",
+          "price": "1",
+          "service": "1",
+          "notes": "1"
         },
         {
           "id": 2,
-          "quantity": "2",
-          "description": "HD 1.5TB WD DESK",
-          "price": "40",
-          "service": "T-REX",
-          "notes": "FIRMWARE/TESTES"
+          "quantity": "1",
+          "description": "HD 750GB SAMSUNG DESK",
+          "price": "1",
+          "service": "1",
+          "notes": "1"
         }
       ],
       "id": 1
+    },
+    {
+      "client": "Pedro Soares",
+      "amount": 130,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "payed": false,
+      "items": [
+        {
+          "id": 0,
+          "quantity": "26",
+          "description": "HD 750GB SEAGATE DESK",
+          "price": "5",
+          "service": "TESTES COM VITÓRIA",
+          "notes": "RESET FIRMWARE"
+        }
+      ],
+      "id": 2
     }
   ],
   "users": [
