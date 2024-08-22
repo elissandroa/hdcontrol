@@ -1,10 +1,10 @@
 {
   "products": [
     {
+      "id": 1,
       "description": "HD 500GB SAMSUNG DESK",
       "brand": "SAMSUNG",
-      "price": "10",
-      "id": 1
+      "price": 10
     },
     {
       "id": 2,
@@ -167,53 +167,29 @@
       "description": "HD 4TB HITACHI DESK",
       "brand": "HITACHI",
       "price": 40
-    },
-    {
-      "description": "HD 500GB SAMSUNG NOTE",
-      "brand": "SAMSUNG",
-      "price": "10",
-      "id": 29
-    },
-    {
-      "description": "HD 750GB SAMSUNG NOTE",
-      "brand": "SAMSUNG",
-      "price": "10",
-      "id": 30
-    },
-    {
-      "description": "HD 1TB SAMSUNG NOTE",
-      "brand": "SAMSUNG",
-      "price": "20",
-      "id": 31
     }
   ],
   "clients": [
     {
-      "name": "Dirceu",
-      "email": "dirceu@gmail.com",
-      "phone": "41-98989-9999",
+      "name": "Elissandro",
+      "email": "elissandro@gmail.com",
+      "phone": "41995628454",
       "id": 1
     },
     {
-      "name": "Letícia",
-      "email": "leticia@gmail.com",
-      "phone": "41-3568-3256",
+      "name": "Júlia a",
+      "email": "julia@gmail.com",
+      "phone": "41-98646464",
       "id": 2
-    },
-    {
-      "name": "Mario",
-      "email": "mario@gmail.com",
-      "phone": "41-9568-5456",
-      "id": 3
     }
   ],
   "orders": [
     {
       "client": "DIRCEU",
-      "amount": 424,
+      "amount": 20,
       "data_entrega": "pendente",
-      "status": "Pendente",
-      "payed": false,
+      "status": "Pronto",
+      "payed": true,
       "items": [
         {
           "id": 1,
@@ -238,60 +214,20 @@
           "price": "1",
           "service": "1",
           "notes": "1"
-        },
-        {
-          "id": 3,
-          "quantity": "10",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "40",
-          "service": "PC-3000",
-          "notes": "REPARO DE FIRMWARE"
-        },
-        {
-          "id": 4,
-          "quantity": "1",
-          "description": "HD 500GB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 5,
-          "quantity": "1",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 6,
-          "quantity": "1",
-          "description": "HD 2TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 7,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
         }
       ],
       "id": 1
     },
     {
       "client": "Pedro Soares",
-      "amount": 25,
-      "data_entrega": "22/7/2024",
-      "status": "Pronto",
+      "amount": 150,
+      "data_entrega": "pendente",
+      "status": "pendente",
       "payed": false,
       "items": [
         {
           "id": 0,
-          "quantity": "5",
+          "quantity": "30",
           "description": "HD 750GB SEAGATE DESK",
           "price": "5",
           "service": "TESTES COM VITÓRIA",
@@ -346,8 +282,8 @@
     },
     {
       "client": "DIRCEU",
-      "amount": 444,
-      "data_entrega": "Pendente",
+      "amount": 220,
+      "data_entrega": "19/7/2024",
       "status": "Pendente",
       "payed": false,
       "items": [
@@ -390,62 +326,6 @@
           "price": "5",
           "service": "CLEAR SMART",
           "notes": "CLEAR SMART / TESTE"
-        },
-        {
-          "id": 5,
-          "quantity": "10",
-          "description": "HD 3TB SAMSUNG DESK",
-          "price": "20",
-          "service": "CLEAR SMART",
-          "notes": "RESET DE FIRMWARE"
-        },
-        {
-          "id": 6,
-          "quantity": "1",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 7,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 8,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "01",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 9,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 10,
-          "quantity": "2",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "10",
-          "service": "CLEAR SMART",
-          "notes": "RESET FIRWMARE"
-        },
-        {
-          "id": 11,
-          "quantity": "10",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "10",
-          "service": "1",
-          "notes": "1"
         }
       ],
       "id": 5
@@ -455,7 +335,7 @@
       "amount": 40,
       "data_entrega": "pendente",
       "status": "pendente",
-      "payed": true,
+      "payed": false,
       "items": [
         {
           "id": 0,

@@ -1,3 +1,4 @@
+import { RiDeleteBin5Line } from 'react-icons/ri'
 import './OrderItem.css'
 
 export const OrderItem = ({ items, deleteItem }) => {
@@ -12,7 +13,7 @@ export const OrderItem = ({ items, deleteItem }) => {
                         <th>Total</th>
                         <th>Serviço</th>
                         <th>Observações</th>
-                        <th>-</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +25,7 @@ export const OrderItem = ({ items, deleteItem }) => {
                             <td> R$ {(prodItem.quantity * prodItem.price).toFixed(2)}</td>
                             <td>{prodItem.service}</td>
                             <td>{prodItem.notes}</td>
-                            <td onClick={() => deleteItem(prodItem.id)}>Delete</td>
+                            <td className='td-delete' onClick={() => deleteItem(prodItem.id)}><RiDeleteBin5Line /></td>
                         </tr>
                     ))}
                 </tbody>

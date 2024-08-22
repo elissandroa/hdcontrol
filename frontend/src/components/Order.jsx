@@ -5,6 +5,9 @@ import axios from 'axios';
 import { EditItem } from './EditItem';
 import { FormAddItem } from './FormAddItem';
 import { OrderItem } from './OrderItem';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+import { FaPlusCircle, FaRegEdit } from 'react-icons/fa';
+import { FormAddItemOs } from './FormAddItemOs';
 
 export const Order = () => {
     const { id } = useParams();
@@ -16,12 +19,15 @@ export const Order = () => {
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const [osId, setOsId] = useState(id);
-    const [visible, setVisible] = useState(null);
+    const [visible, setVisible] = useState(false);
     const [payed, setPayed] = useState(false);
     const [formAddVisible, setFormAddVisible] = useState(false);
     const [products, setProducts] = useState([]);
     const [render, setRender] = useState(0);
     const [disable, setDisable] = useState(true);
+    const [editItem, setEditItem] = useState(false);
+    const [updateStatus, setUpdateStatus] = useState(0);
+ 
     let amount;
 
     useEffect(() => {
@@ -30,7 +36,7 @@ export const Order = () => {
                 .then((response) => setOrder(response.data));
         }
         getData();
-    }, [editQuantity]);
+    }, [editQuantity,updateStatus]);
 
 
     const totalAmount = () => {
@@ -58,7 +64,7 @@ export const Order = () => {
 
         await axios.put(`http://localhost:8000/orders/${osId}`, newOrder);
         await axios.get(`http://localhost:8000/orders/${osId}`)
-        .then((response) => setOrder(response.data));
+            .then((response) => setOrder(response.data));
 
     }
 
@@ -108,7 +114,7 @@ export const Order = () => {
         save();
     }
 
-    const OnleDelete = async (osId) => {
+    const OnlDelete = async (osId) => {
         await axios.delete(`http://localhost:8000/orders/${osId}`);
         navigate('/');
     }
@@ -134,74 +140,27 @@ export const Order = () => {
         updateOrder(osId);
     }
 
+    const onClose = () => {
+        setVisible(!visible);
+    }
+
     const OnFormVisibility = () => { }
 
     return (
         order && !order.payed && <div>
+            {visible && <FormAddItemOs  onClose={onClose} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} osId={osId} />}
             <div className='order-container'>
+
                 <div className='order-header'>
-                    <p>OS: {id}</p>
-                    <p>Cliente: {order.client}</p>
-                    <p>Valor: R$ {parseFloat((totalAmount())).toFixed(2)} </p>
-                    {formAddVisible && <FormAddItem id={osId} OnSaveEdit={OnSaveEdit} save={save} />}
-                    {visible && <table>
-                        <thead>
-                            <tr>
-                                <th>Quantidade</th>
-                                <th>Entrega</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input
-                                        type="number"
-                                        value={editQuantity}
-                                        onChange={(e) => setEditQuantity(e.target.value)}
-                                        onClick={() => OnSaveEdit("save")}
-                                        className='item-Edit'
-                                        disabled={disable}
-                                    />
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={editDataEntrega}
-                                        onChange={(e) => setEditDataEntrega(e.target.value)}
-                                        onClick={() => OnClickChangeDataEntrega()}
-                                        disabled={disable}
-                                    />
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={editStatus}
-                                        onChange={(e) => setEditStatus(e.target.value)}
-                                        onClick={() => OnClickChangeStatus()}
-                                        disabled={disable}
-                                    />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>}
-                    {visible && <div>
-                        <div className='finish-os-container'>
-                            <div className='button-save-container'>
-                                <button onClick={saveOs}>Salvar</button>
-                            </div>
-                            <div className='checkbox-pay-container'>
-                                <input type="checkBox" name="payed" id="payed" onClick={() => OnPay(OnSaveEdit("payed"))} />
-                                <span><label htmlFor="Pago">Pago</label> </span>
-                                <div>
-                                    <button onClick={() => OnFormVisibility(setVisible(false), setFormAddVisible(true))}>Adicionar item</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>}
-
-
+                    <div className="order-new">
+                        <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button>
+                    </div>
+                    <div className='os-header-info'>
+                        <p>OS: {id}</p>
+                        <p>Cliente: {order.client}</p>
+                        <p>Valor: R$ {parseFloat((totalAmount())).toFixed(2)} </p>
+                    </div>
+                    <div className='header-right'></div>
                 </div>
                 <table>
                     <thead>
@@ -213,19 +172,13 @@ export const Order = () => {
                             <th>Serviço</th>
                             <th>Observações</th>
                             <th>Entrega</th>
-                            {visible && <th>--+--</th>}
+                            <th>Editar</th>
+                            <th>Excluir</th>
                         </tr>}
                     </thead>
                     <tbody>
                         {order.items && order.items.map((item, key) => (
-                            <tr key={key} onClick={() =>
-                                OnVisible(setVisible(true),
-                                    setDisable(false),
-                                    setIndex(item.id),
-                                    setEditQuantity(item.quantity),
-                                    setEditDataEntrega(order.data_entrega),
-                                    setEditStatus(order.status)
-                                )} className='tr-hover'>
+                            <tr key={key}  className='tr-hover'>
                                 <td className='item-Edit td-width-60'
                                     onClick={
                                         (e) => OnClickEdit
@@ -247,7 +200,8 @@ export const Order = () => {
                                 <td>{item.service}</td>
                                 <td>{item.notes}</td>
                                 <td>{order.data_entrega}</td>
-                                {visible && <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}>Excluir</td>}
+                                <td><FaRegEdit /></td>
+                                <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>
                             </tr>
                         ))}
                     </tbody>
