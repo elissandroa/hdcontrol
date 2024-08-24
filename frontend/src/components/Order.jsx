@@ -8,13 +8,15 @@ import { OrderItem } from './OrderItem';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { FaPlusCircle, FaRegEdit } from 'react-icons/fa';
 import { FormAddItemOs } from './FormAddItemOs';
+import { FormEditItemOs } from './FormEditItemOs';
+import { FormOsAdm } from './FormOsAdm';
 
 export const Order = () => {
     const { id } = useParams();
     const [order, setOrder] = useState({});
     const [editQuantity, setEditQuantity] = useState(0);
-    const [editDataEntrega, setEditDataEntrega] = useState("Pendente");
-    const [editStatus, setEditStatus] = useState("Pendente");
+    const [editDataEntrega, setEditDataEntrega] = useState("");
+    const [editStatus, setEditStatus] = useState("");
     const [index, setIndex] = useState(0);
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
@@ -27,7 +29,11 @@ export const Order = () => {
     const [disable, setDisable] = useState(true);
     const [editItem, setEditItem] = useState(false);
     const [updateStatus, setUpdateStatus] = useState(0);
- 
+    const [itemEditVisible, setItemEditVisible] = useState(false);
+    const [itemForEdit, setItemForEdit] = useState({});
+    const [indexId, setIndexId] = useState(null);
+    const [osAdmForm, setOsAdmForm] = useState(false);
+
     let amount;
 
     useEffect(() => {
@@ -36,7 +42,7 @@ export const Order = () => {
                 .then((response) => setOrder(response.data));
         }
         getData();
-    }, [editQuantity,updateStatus]);
+    }, [editQuantity, updateStatus]);
 
 
     const totalAmount = () => {
@@ -135,8 +141,9 @@ export const Order = () => {
 
     }
 
+
     const OnDeleteItem = (indexId) => {
-        itemsEdit.splice(itemsEdit.indexOf(indexId), 1);
+        itemsEdit = [itemsEdit][0].filter((item) => item.id !== indexId);
         updateOrder(osId);
     }
 
@@ -144,11 +151,28 @@ export const Order = () => {
         setVisible(!visible);
     }
 
+    const onCloseEditForm = () => {
+        setItemEditVisible(!itemEditVisible);
+    }
+
+    const onCloseAdmForm = () => {
+        setOsAdmForm(!osAdmForm);
+    }
+
     const OnFormVisibility = () => { }
+
+    const editOsItem = (item) => {
+        setItemForEdit(item);
+        setIndexId(item.id);
+        setOsId(id);
+        setItemEditVisible(!itemEditVisible);
+    }
 
     return (
         order && !order.payed && <div>
-            {visible && <FormAddItemOs  onClose={onClose} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} osId={osId} />}
+            {visible && <FormAddItemOs onClose={onClose} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} osId={osId} />}
+            {itemEditVisible && <FormEditItemOs onCloseEditForm={onCloseEditForm} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} itemForEdit={itemForEdit} osId={osId} indexId={indexId} />}
+            {osAdmForm && <FormOsAdm onCloseAdmForm={onCloseAdmForm} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} itemForEdit={itemForEdit} osId={osId} indexId={indexId} />}
             <div className='order-container'>
 
                 <div className='order-header'>
@@ -160,47 +184,35 @@ export const Order = () => {
                         <p>Cliente: {order.client}</p>
                         <p>Valor: R$ {parseFloat((totalAmount())).toFixed(2)} </p>
                     </div>
-                    <div className='header-right'></div>
+                    <div>
+                        <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button>
+                    </div>
                 </div>
                 <table>
                     <thead>
                         {<tr>
+                            <th>ID</th>
                             <th>Qtde</th>
                             <th>Descrição</th>
-                            <th>Un</th>
+                            <th>Valor</th>
                             <th>Total</th>
                             <th>Serviço</th>
                             <th>Observações</th>
-                            <th>Entrega</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>}
                     </thead>
                     <tbody>
                         {order.items && order.items.map((item, key) => (
-                            <tr key={key}  className='tr-hover'>
-                                <td className='item-Edit td-width-60'
-                                    onClick={
-                                        (e) => OnClickEdit
-                                            (
-                                                setEditQuantity(item.quantity),
-                                                setEditDataEntrega(order.data_entrega),
-                                                setEditStatus(order.status),
-                                                OnClickIndex(item.id)
-                                            )
-
-                                    }
-
-                                >
-                                    {item.quantity}
-                                </td>
+                            <tr key={key} className='tr-hover'>
+                                <td>{item.id}</td>
+                                <td>{item.quantity}</td>
                                 <td>{item.description}</td>
                                 <td>R$ {parseFloat(item.price).toFixed(2)}</td>
                                 <td>R$ {(item.quantity * item.price).toFixed(2)}</td>
                                 <td>{item.service}</td>
                                 <td>{item.notes}</td>
-                                <td>{order.data_entrega}</td>
-                                <td><FaRegEdit /></td>
+                                <td onClick={() => editOsItem(item)}><FaRegEdit /></td>
                                 <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>
                             </tr>
                         ))}

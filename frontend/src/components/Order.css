@@ -63,3 +63,14 @@
     color: red;
 }
 
+.button-status-order {
+   display: flex;
+   width: 200px;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.button-status-order input {
+    width: 120px;
+}
+

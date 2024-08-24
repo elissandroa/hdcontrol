@@ -16,7 +16,9 @@ export const OrderList = () => {
 
   let ordersFilter = orders;
   let ordersLessPayment = ordersFilter.filter((ordem) => ordem.payed !== true);
-
+ if(!ordersLessPayment) {
+  <p>carregando ...</p>
+ }
   return (
     ordersLessPayment.length > 0 && <div className="order-container">
       <h2>Relação de ordens de serviço em execução</h2>

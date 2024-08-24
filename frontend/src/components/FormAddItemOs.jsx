@@ -12,6 +12,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
     const [notes, setNotes] = useState("");
     const [order, setOrder] = useState([]);
     const [error, setError] = useState("");
+    const [idItem, setIdItem] = useState(0);
 
     let amount;
 
@@ -51,14 +52,22 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
         getOrder();
     }, [])
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(description === "" || description === "Selecione um produto") {
+        if (description === "" || description === "Selecione um produto") {
             setError("Escolha um produto!");
             return;
         };
+
+        let biggest = 0;
+        for (let index = 0; index < order.items.length; index++) {
+            biggest = order.items[index].id > biggest ? order.items[index].id : biggest;
+        }
+        biggest++;
+        
         const newItem = {
-            "id": order.items.length,
+            "id": biggest,
             "quantity": quantity,
             "description": description,
             "price": price,

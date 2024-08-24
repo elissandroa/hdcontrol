@@ -210,92 +210,68 @@
   "orders": [
     {
       "client": "DIRCEU",
-      "amount": 424,
-      "data_entrega": "pendente",
-      "status": "Pendente",
-      "payed": false,
+      "amount": 1112,
+      "data_entrega": "23/08/2024",
+      "status": "Pronto",
+      "payed": true,
       "items": [
         {
           "id": 1,
           "quantity": "3",
-          "description": "HD 4TB SAMSUNG DESK",
-          "price": "3",
-          "service": "3",
-          "notes": "3"
-        },
-        {
-          "id": 1,
-          "quantity": "3",
-          "description": "HD 1.5TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 2,
-          "quantity": "8",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 3,
-          "quantity": "10",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "40",
+          "description": "HD 1TB SAMSUNG DESK",
+          "price": "25",
           "service": "PC-3000",
           "notes": "REPARO DE FIRMWARE"
         },
         {
           "id": 4,
-          "quantity": "1",
+          "quantity": 169,
           "description": "HD 500GB SAMSUNG DESK",
-          "price": "1",
+          "price": "6",
+          "service": "1",
+          "notes": "1"
+        },
+        {
+          "quantity": "8",
+          "description": "HD 500GB SAMSUNG DESK",
+          "price": "2",
           "service": "1",
           "notes": "1"
         },
         {
           "id": 5,
-          "quantity": "1",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "1",
+          "quantity": "2",
+          "description": "HD 500GB SAMSUNG DESK",
+          "price": "3",
           "service": "1",
           "notes": "1"
         },
         {
           "id": 6,
           "quantity": "1",
-          "description": "HD 2TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 7,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
+          "description": "HD 500GB SAMSUNG DESK",
           "price": "1",
           "service": "1",
           "notes": "1"
         }
       ],
-      "id": 1
+      "id": 1,
+      "totalAmount": 1098
     },
     {
       "client": "Pedro Soares",
-      "amount": 25,
+      "amount": 400,
       "data_entrega": "22/7/2024",
       "status": "Pronto",
-      "payed": false,
+      "payed": true,
       "items": [
         {
           "id": 0,
-          "quantity": "5",
-          "description": "HD 750GB SEAGATE DESK",
-          "price": "5",
-          "service": "TESTES COM VITÓRIA",
-          "notes": "RESET FIRMWARE"
+          "quantity": "14",
+          "description": "HD 1TB SAMSUNG DESK",
+          "price": "40",
+          "service": "REPARO FIRMWARE",
+          "notes": "TESTES E REPAROS"
         }
       ],
       "id": 2
@@ -303,9 +279,9 @@
     {
       "client": "MARIO",
       "amount": 2,
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "payed": false,
+      "data_entrega": "23/08/2024",
+      "status": "Pronto",
+      "payed": true,
       "items": [
         {
           "id": 0,
@@ -329,9 +305,9 @@
     {
       "client": "DIRCEU",
       "amount": 1125,
-      "data_entrega": "pendente",
-      "status": "pendente",
-      "payed": false,
+      "data_entrega": "23/08/2024",
+      "status": "Pronto",
+      "payed": true,
       "items": [
         {
           "id": 0,
@@ -346,106 +322,42 @@
     },
     {
       "client": "DIRCEU",
-      "amount": 444,
+      "amount": 2155,
       "data_entrega": "Pendente",
-      "status": "Pendente",
-      "payed": false,
+      "status": "Pronto",
+      "payed": true,
       "items": [
         {
-          "id": 0,
-          "quantity": "5",
-          "description": "HD 1.5TB WD DESK",
-          "price": "5",
-          "service": "CLEAR SMART",
-          "notes": "CLEAR SMART / TESTE"
-        },
-        {
           "id": 1,
-          "quantity": "2",
-          "description": "HD 500GB SAMSUNG DESK",
-          "price": "5",
-          "service": "CLEAR SMART",
-          "notes": "CLEAR SMART / TESTE"
+          "quantity": "10",
+          "description": "HD 750GB SAMSUNG DESK",
+          "price": "10",
+          "service": "Teste",
+          "notes": "teste2"
         },
         {
           "id": 2,
-          "quantity": "12",
-          "description": "HD 500GB HITACHI DESK",
+          "quantity": "15",
+          "description": "HD 750GB SAMSUNG DESK",
           "price": "5",
-          "service": "CLEAR SMART",
-          "notes": "CLEAR SMART / TESTE"
+          "service": "PC-3000",
+          "notes": "REPARO DE BADS"
         },
         {
           "id": 3,
-          "quantity": "5",
-          "description": "HD 500GB SEAGATE DESK",
-          "price": "5",
-          "service": "CLEAR SMART",
-          "notes": "CLEAR SMART /TESTE"
+          "quantity": "50",
+          "description": "HD 1.5TB SAMSUNG DESK",
+          "price": "20",
+          "service": "teste",
+          "notes": "teste"
         },
         {
           "id": 4,
-          "quantity": "20",
-          "description": "HD 1TB WD DESK",
-          "price": "5",
-          "service": "CLEAR SMART",
-          "notes": "CLEAR SMART / TESTE"
-        },
-        {
-          "id": 5,
-          "quantity": "10",
-          "description": "HD 3TB SAMSUNG DESK",
-          "price": "20",
-          "service": "CLEAR SMART",
-          "notes": "RESET DE FIRMWARE"
-        },
-        {
-          "id": 6,
-          "quantity": "1",
+          "quantity": "35",
           "description": "HD 750GB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 7,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 8,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "01",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 9,
-          "quantity": "1",
-          "description": "HD 1TB SAMSUNG DESK",
-          "price": "1",
-          "service": "1",
-          "notes": "1"
-        },
-        {
-          "id": 10,
-          "quantity": "2",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "10",
-          "service": "CLEAR SMART",
-          "notes": "RESET FIRWMARE"
-        },
-        {
-          "id": 11,
-          "quantity": "10",
-          "description": "HD 750GB SAMSUNG DESK",
-          "price": "10",
-          "service": "1",
-          "notes": "1"
+          "price": "28",
+          "service": "REPARO DE FIRWMARE",
+          "notes": "REPARO + TESTES"
         }
       ],
       "id": 5
@@ -455,7 +367,7 @@
       "amount": 40,
       "data_entrega": "pendente",
       "status": "pendente",
-      "payed": true,
+      "payed": false,
       "items": [
         {
           "id": 0,
@@ -467,6 +379,60 @@
         }
       ],
       "id": 6
+    },
+    {
+      "client": "Mario",
+      "amount": 800,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "payed": false,
+      "items": [
+        {
+          "id": 0,
+          "quantity": "20",
+          "description": "HD 2TB WD DESK",
+          "price": "40",
+          "service": "T-REX",
+          "notes": "FIRMWARE/RESET"
+        }
+      ],
+      "id": 7
+    },
+    {
+      "client": "Letícia",
+      "amount": 150,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "payed": false,
+      "items": [
+        {
+          "id": 0,
+          "quantity": "30",
+          "description": "HD 750GB WD DESK",
+          "price": "5",
+          "service": "TESTE",
+          "notes": "TESTE"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "client": "Mario",
+      "amount": 800,
+      "data_entrega": "pendente",
+      "status": "pendente",
+      "payed": false,
+      "items": [
+        {
+          "id": 0,
+          "quantity": "20",
+          "description": "HD 3TB HITACHI DESK",
+          "price": "40",
+          "service": "T-REX",
+          "notes": "TROCA DE ID + TESTES"
+        }
+      ],
+      "id": 9
     }
   ],
   "users": [
