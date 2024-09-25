@@ -6,3 +6,21 @@
     gap: 10px;
     margin-bottom: 20px;
 }
+
+.btnNewItem {
+    width: 210px;
+    height: 40px;
+}
+
+#description {
+    width: 210px;
+    padding: 5px;
+}
+
+input::placeholder {
+    font-weight: bold;
+    color: blueviolet;
+    font-size: 20px;
+    opacity: .5;
+    text-transform: uppercase;
+}

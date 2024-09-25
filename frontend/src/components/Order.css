@@ -1,12 +1,16 @@
 .order-header {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     gap: 3rem;
     margin-bottom: 25px;
     padding: 20px;
     border-bottom: 1px solid purple;
-    flex: 1;
+    width: 30%;
+}
+
+.order-header {
+    width: 90%;
 }
 
 .order-header button {
@@ -15,6 +19,12 @@
 
 .item-Edit:hover {
     cursor: pointer;
+}
+.os-header-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
 }
 
 .button-save {
@@ -46,10 +56,21 @@
 }
 
 .btn-delete {
-    z-index: 1000;
+    z-index: 1000 !important;
 }
 
 .btn-delete:hover {
     color: red;
+}
+
+.button-status-order {
+   display: flex;
+   width: 200px;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.button-status-order input {
+    width: 120px;
 }
 

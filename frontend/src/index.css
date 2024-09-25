@@ -25,3 +25,13 @@ a {
   align-items: center;
   justify-content: space-between;
 }
+
+.td-delete {
+  color: red;
+  cursor:Pointer
+}
+
+.td-delete:hover {
+  background-color: rgb(208, 255, 0);
+  transition: .3s;
+}

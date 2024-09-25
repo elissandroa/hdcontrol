@@ -3,6 +3,9 @@ import { OrderItem } from "./OrderItem";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./NewOs.css";
+import { CgAdd } from "react-icons/cg";
+import { RiSave3Fill } from "react-icons/ri";
+
 
 export const NewOs = ({ clients, products }) => {
   const [item, setItem] = useState('');
@@ -177,10 +180,10 @@ export const NewOs = ({ clients, products }) => {
 
           <div className="input-buttons-container">
             <div>
-              <button onClick={addItem}>Add</button>
+              <button className="addButton" onClick={addItem}><CgAdd /></button>
             </div>
             <div>
-              <button onClick={createOrder}>Salvar</button>
+              <button className="saveButton" onClick={createOrder}><RiSave3Fill /></button>
             </div>
           </div>
         </div>

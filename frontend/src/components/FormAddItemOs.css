@@ -1,0 +1,78 @@
+h2 {
+    color: Blue;
+    font-size: 24px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: aquamarine;
+    width: 350px;
+    max-width: 90%px;
+    padding: 2rem;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container,
+input {
+    width: 300px;
+}
+
+input::placeholder {
+    opacity: .2;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.buttons-container {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btnAdd:hover {
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+}
+
+.btnCancel:hover {
+    font-weight: bold;
+    background-color: red;
+    color: white;
+}
+.errorMail {
+    font-size: 1.rrem;
+    margin-top: 2px;
+    font-weight: bold;
+    text-align: center;
+    columns: red;
+}

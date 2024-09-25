@@ -13,7 +13,7 @@
     text-align: left;
     border: 1px solid rgb(160 160 160);
     color: #000;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
 }
@@ -44,4 +44,14 @@ tr:nth-child(odd) {
 
 .td-width-220 {
     width: 220px;
+}
+
+.order-list-link {
+    color: green;
+    cursor:Pointer;
+}
+
+.order-list-link:hover {
+    background-color: rgb(208, 255, 0);
+    transition: .3s;
 }

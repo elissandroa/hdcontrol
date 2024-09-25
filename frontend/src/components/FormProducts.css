@@ -1,0 +1,63 @@
+.button-new {
+    margin: 20px 0 20px 5px;
+    cursor: pointer;
+}
+
+.button-new button {
+    font-size:15px;
+    font-weight: bold;
+}
+
+.button-new button:hover {
+   opacity: .4;
+   transition: .3s;
+}
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-icon {
+    font-size: 20px;
+    color: #000;
+    background-color: white;
+    border-radius: 8px;
+    align-self: center;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.search-icon:hover {
+    opacity: .4;
+    transition: .3s;
+}
+
+.crudIconEdit {
+    color: blue;
+    cursor: pointer;
+}
+
+.crudIconDelete {
+   color: red;
+   cursor:Pointer
+}
+
+.crudIconEdit:hover {
+    background-color: rgb(208, 255, 0);
+    transition: .3s;
+}
+
+.crudIconDelete:hover {
+    background-color:rgb(208, 255, 0);
+    transition: .3s;
+}

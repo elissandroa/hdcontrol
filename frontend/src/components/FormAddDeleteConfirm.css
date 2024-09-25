@@ -1,0 +1,12 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
