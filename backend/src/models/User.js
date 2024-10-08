@@ -26,7 +26,7 @@ const User = db.define('User',
         },
 
     })
-
-    User.belongsTo(Role);
+Role.hasMany(User);
+User.belongsTo(Role);
 
 module.exports = User

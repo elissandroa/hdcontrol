@@ -1,6 +1,6 @@
 const service = require('../services/userService');
 const Role = require('../models/Role');
-
+const createUserToken = require('../helpers/create-user-token');
 
 module.exports = class UserController {
 
@@ -15,7 +15,7 @@ module.exports = class UserController {
         }
 
         const newUser = await service.postUserService(user);
-        res.status(201).json(newUser);
+        await createUserToken(newUser, req, res);
     }
 
     static async getUserController(req, res) {
@@ -23,20 +23,20 @@ module.exports = class UserController {
         res.status(200).json(users);
     }
 
-    static async getUserControllerById(req, res){
+    static async getUserControllerById(req, res) {
         const id = req.params.id;
         const user = await service.getUser(parseInt(id));
         res.status(200).json(user);
     }
 
-    static async getUserControllerByName(req, res){
-        const {name } = req.query;
+    static async getUserControllerByName(req, res) {
+        const { name } = req.query;
         const user = await service.getUserServiceByName(name);
         res.status(200).json(user);
     }
 
     static async patchUserController(req, res) {
-        const {name, email, phone, password, RoleId} = req.body;
+        const { name, email, phone, password, RoleId } = req.body;
         const id = req.params.id;
         const user = {
             name,
@@ -53,7 +53,20 @@ module.exports = class UserController {
     static async deleteUserController(req, res) {
         const id = req.params.id;
         await service.deleteServiceUser(id);
-        res.status(200).json({message: 'Deletado com sucesso!'});
+        res.status(200).json({ message: 'Deletado com sucesso!' });
+    }
+
+    static async login(req, res) {
+        const {email, password} = req.body;
+
+        if(!email) {
+            res.status(422).json({message: 'O email é obrigatório'});
+        }
+
+        if(!password) {
+            res.status(422).json({message: 'A senha é obrigatória'});
+        }
+
     }
 
 

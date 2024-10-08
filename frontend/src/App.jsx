@@ -10,7 +10,7 @@ import { Client } from './pages/Client'
 import { Products } from './pages/Products'
 
 function App() {
-  const [auth] = useState(true);
+  const [auth] = useState(false);
 
   return (
     <BrowserRouter>

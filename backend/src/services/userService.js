@@ -32,6 +32,7 @@ module.exports = class UserService {
             }
 
             const newUser = await repository.postUserRepository(user);
+
             newUser.password = undefined;
             return newUser;
         } catch (error) {
