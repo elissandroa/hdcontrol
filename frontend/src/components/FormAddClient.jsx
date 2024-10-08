@@ -14,7 +14,7 @@ export const FormAddClient = ({onClose}) => {
             email,
             phone
         }
-        axios.post("http://localhost:8000/clients", client);
+        axios.post("http://localhost:5000/api/users", client);
         onClose();
 
     }

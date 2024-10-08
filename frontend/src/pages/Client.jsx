@@ -10,7 +10,7 @@ export const Client = () => {
 
   useEffect(() => {
     const getClients = async () => {
-      await axios.get("http://localhost:8000/clients")
+      await axios.get("http://localhost:5000/api/users")
         .then((response) => setClients(response.data));
     }
 

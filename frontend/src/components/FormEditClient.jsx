@@ -10,7 +10,7 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
 
     useEffect(() => {
         try {
-            axios.get(`http://localhost:8000/clients/${updateId}`)
+            axios.get(`http://localhost:5000/api/users/${updateId}`)
                 .then((response) => setClient(response.data));
         } catch (error) {
             console.log(error)
@@ -38,7 +38,7 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
             email,
             phone
         }
-        axios.put(`http://localhost:8000/clients/${updateId}`, client);
+        axios.patch(`http://localhost:5000/api/users/${updateId}`, client);
         getClients();
         setUpdateStatus(!updateStatus);
         onCloseUpdateForm();

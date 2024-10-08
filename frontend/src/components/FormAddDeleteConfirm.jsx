@@ -9,7 +9,7 @@ export const FormAddDeleteConfirm = ({onModalDelete, onDelete, delId}) => {
                     <h2>Deseja excluir ?</h2>
                 </div>
                 <div className='buttons-container'>
-                    <button type='submit' className='btnCancel' onClick={() => onDelete(delId)}>Sim</button>
+                    <button type='submit' className='btnCancel' onClick={async () => await onDelete(delId)}>Sim</button>
                     <button className='btnAdd' onClick={onModalDelete}>Não</button>
                 </div>
             </div>
