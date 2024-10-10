@@ -1,6 +1,6 @@
 import './Order.css'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { EditItem } from './EditItem';
 import { FormAddItem } from './FormAddItem';
@@ -10,6 +10,7 @@ import { FaPlusCircle, FaRegEdit } from 'react-icons/fa';
 import { FormAddItemOs } from './FormAddItemOs';
 import { FormEditItemOs } from './FormEditItemOs';
 import { FormOsAdm } from './FormOsAdm';
+import { Context } from '../context/UserContext';
 
 export const Order = () => {
     const { id } = useParams();
@@ -33,6 +34,8 @@ export const Order = () => {
     const [itemForEdit, setItemForEdit] = useState({});
     const [indexId, setIndexId] = useState(null);
     const [osAdmForm, setOsAdmForm] = useState(false);
+
+    const { admin } = useContext(Context);
 
     let amount;
 
@@ -177,7 +180,7 @@ export const Order = () => {
 
                 <div className='order-header'>
                     <div className="order-new">
-                        <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button>
+                        {admin && <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button>}
                     </div>
                     <div className='os-header-info'>
                         <p>OS: {id}</p>
@@ -185,7 +188,7 @@ export const Order = () => {
                         <p>Valor: R$ {parseFloat((totalAmount())).toFixed(2)} </p>
                     </div>
                     <div>
-                        <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button>
+                        {admin ? <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button> : <button onClick={() => navigate('/')}>Voltar</button> }
                     </div>
                 </div>
                 <table>
@@ -198,8 +201,8 @@ export const Order = () => {
                             <th>Total</th>
                             <th>Serviço</th>
                             <th>Observações</th>
-                            <th>Editar</th>
-                            <th>Excluir</th>
+                            {admin && <th>Editar</th>}
+                            {admin && <th>Excluir</th>}
                         </tr>}
                     </thead>
                     <tbody>
@@ -212,8 +215,8 @@ export const Order = () => {
                                 <td>R$ {(item.quantity * item.price).toFixed(2)}</td>
                                 <td>{item.service}</td>
                                 <td>{item.notes}</td>
-                                <td onClick={() => editOsItem(item)}><FaRegEdit /></td>
-                                <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>
+                                {admin && <td onClick={() => editOsItem(item)}><FaRegEdit /></td>}
+                                {admin && <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>}
                             </tr>
                         ))}
                     </tbody>

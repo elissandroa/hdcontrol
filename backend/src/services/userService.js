@@ -1,5 +1,8 @@
 const repository = require('../repositories/userRepository');
 const bcrypt = require('bcrypt');
+const createUserToken = require('../helpers/create-user-token');
+const getToken = require('../helpers/get-token');
+const jwt = require('jsonwebtoken');
 
 module.exports = class UserService {
 
@@ -14,7 +17,7 @@ module.exports = class UserService {
             const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(password, salt);
             user.password = passwordHash;
-           
+
             const userExist = await repository.getUsersRepositoryByEmail(email);
             if (userExist) {
                 msg = { message: 'Email já cadastrado!' };
@@ -92,7 +95,7 @@ module.exports = class UserService {
         }
     }
 
-    static async patchServiceUser(user, id){
+    static async patchServiceUser(user, id) {
         let msg = '';
         try {
             const password = user.password;
@@ -100,7 +103,7 @@ module.exports = class UserService {
             const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(password, salt);
             user.password = passwordHash;
-            
+
             const updatedUser = await repository.patchUserRepository(user, id);
             updatedUser.password = undefined;
             return updatedUser;
@@ -111,7 +114,7 @@ module.exports = class UserService {
         }
     }
 
-    static async deleteServiceUser(id){
+    static async deleteServiceUser(id) {
         try {
             repository.deleteUserRepository(id);
         } catch (error) {
@@ -119,5 +122,47 @@ module.exports = class UserService {
             msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
             return msg;
         }
+    }
+
+
+    static async loginService(req, res) {
+
+        try {
+            const { email, password } = req.body;
+
+        const user = await repository.getUsersRepositoryByEmail(email);
+
+        if (user) {
+            const checkPassword = await bcrypt.compare(password, user.password);
+            if (!checkPassword) {
+                res.status(422).json({ message: 'Acesso negado!' })
+                return;
+            }
+        }
+        const loggedUser = await createUserToken(user, req, res);
+
+        return { loggedUser };
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    static async checkUserService(req, res) {
+        let currentUser;
+
+        try {
+            if (req.headers.authorization) {
+                const token = getToken(req);
+                const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+                currentUser = await repository.getUsersRepositoryById(decoded.id);
+                currentUser.password = undefined;
+            }
+                
+        } catch (error) {
+            currentUser = null;
+        }
+
+        res.status(200).json(currentUser);
     }
 }

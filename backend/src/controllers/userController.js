@@ -57,16 +57,11 @@ module.exports = class UserController {
     }
 
     static async login(req, res) {
-        const {email, password} = req.body;
+        const loggedUser = await service.loginService(req, res);
+    }
 
-        if(!email) {
-            res.status(422).json({message: 'O email é obrigatório'});
-        }
-
-        if(!password) {
-            res.status(422).json({message: 'A senha é obrigatória'});
-        }
-
+    static async checkUser(req, res) {
+        const currentUser = await service.checkUserService(req, res);
     }
 
 

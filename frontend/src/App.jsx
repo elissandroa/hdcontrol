@@ -8,21 +8,26 @@ import { Order } from './components/Order'
 import { Os } from './pages/Os'
 import { Client } from './pages/Client'
 import { Products } from './pages/Products'
+import { UserProvider } from './context/UserContext'
+
+
 
 function App() {
-  const [auth] = useState(false);
 
   return (
     <BrowserRouter>
-    {auth && <Navbar />}
-      <Routes>
-        <Route path='/' element={auth ? <Home /> : <Login />} />
-        <Route path='/order/:id' element={<Order />} />
-        <Route path='/order_service' element={<Os />} />
-        <Route path='/clients' element={<Client />} />
-        <Route path='/products' element={<Products />} />
-      </Routes>
-     {auth && <Footer />}
+      <UserProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/order/:id' element={<Order />} />
+          <Route path='/order_service' element={<Os />} />
+          <Route path='/clients' element={<Client />} />
+          <Route path='/products' element={<Products />} />
+        </Routes>
+       <Footer />
+      </UserProvider>
     </BrowserRouter>
   )
 }

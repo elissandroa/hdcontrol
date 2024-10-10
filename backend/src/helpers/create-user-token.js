@@ -7,6 +7,8 @@ const createUserToken = async (user, req, res) => {
         id: user.id
     }, process.env.JWT_SECRET)
 
+    user.password = undefined;
+    
     res.status(200).json({
         message: 'Você está autenticado',
         user,

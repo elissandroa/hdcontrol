@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './Client.css'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { FormClient } from '../components/FormClient';
+import { Context } from '../context/UserContext';
 
 
 export const Client = () => {
   const [clients, setClients] = useState([]);
+  const { authenticated} = useContext(Context);
 
   useEffect(() => {
     const getClients = async () => {
@@ -19,7 +21,7 @@ export const Client = () => {
 
 
   return (
-    <div className="clients-container">
+    authenticated && <div className="clients-container">
       <FormClient />
     </div>
   )

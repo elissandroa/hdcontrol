@@ -1,8 +1,11 @@
+import { useContext } from 'react'
 import { FormProducts } from '../components/FormProducts'
 import './Products.css'
+import { Context } from '../context/UserContext'
 export const Products = () => {
+  const {authenticated} = useContext(Context);
   return (
-    <div className='products-container'>
+    authenticated && <div className='products-container'>
       <FormProducts />
     </div>
   )

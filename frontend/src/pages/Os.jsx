@@ -1,12 +1,15 @@
 import "./Os.css";
 import { NewOs } from "../components/NewOs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { Context } from "../context/UserContext";
 
 export const Os = () => {
   const [clients, setClients] = useState([]);
   const [products, setProducts] = useState([]);
   const LOCAL_URL = "http://localhost:8000";
+
+  const {authenticated } = useContext(Context);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -25,7 +28,7 @@ export const Os = () => {
   }, []);
 
   return (
-    <div className="os-container">
+    authenticated && <div className="os-container">
       <h2>Ordem de Serviço</h2>
       <NewOs clients={clients} products={products} />
     </div>

@@ -1,13 +1,15 @@
 
+import { useContext } from "react";
 import { OrderList } from "../components/OrderList";
 import "./Orders.css";
+import { Context } from "../context/UserContext";
 export const Orders = ({ orders }) => {
-
+  const {authenticated } = useContext(Context);
   return (
 
 
     <div className="orders-container">
-      {orders.length > 0 && < OrderList orders={orders} />}
+      {authenticated && orders.length > 0 && < OrderList orders={orders} />}
     </div>
   );
 };

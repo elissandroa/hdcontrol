@@ -433,6 +433,24 @@
         }
       ],
       "id": 9
+    },
+    {
+      "client": "Dirceu",
+      "amount": 360,
+      "data_entrega": "pendente",
+      "status": "Pronto",
+      "payed": false,
+      "items": [
+        {
+          "id": 0,
+          "quantity": "15",
+          "description": "HD 1TB WD DESK",
+          "price": "24",
+          "service": "PC-3000",
+          "notes": "Executando"
+        }
+      ],
+      "id": 10
     }
   ],
   "users": [
