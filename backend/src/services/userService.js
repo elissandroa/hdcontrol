@@ -95,7 +95,7 @@ module.exports = class UserService {
         }
     }
 
-    static async patchServiceUser(user, id) {
+    static async patchUserService(user, id) {
         let msg = '';
         try {
             const password = user.password;

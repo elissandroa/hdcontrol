@@ -46,7 +46,7 @@ module.exports = class UserController {
             RoleId
         }
 
-        const updatedUser = await service.patchServiceUser(user, id);
+        const updatedUser = await service.patchUserService(user, id);
         res.status(200).json(updatedUser);
     }
 
