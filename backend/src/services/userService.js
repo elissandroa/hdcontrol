@@ -85,7 +85,7 @@ module.exports = class UserService {
     static async getUserServiceByName(name) {
         let msg = '';
         try {
-            const users = await repository.getuserRepositoryByName(name);
+            const users = await repository.getUserRepositoryByName(name);
             users.map((user) => user.password = undefined);
             return users;
         } catch (error) {

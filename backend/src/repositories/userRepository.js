@@ -24,7 +24,7 @@ module.exports = class UserRepository {
         return user;
     }
 
-    static async getuserRepositoryByName(name) {
+    static async getUserRepositoryByName(name) {
         const user = await User.findAll({ where: { name: name } });
         return user;
     }
