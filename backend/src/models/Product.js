@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 const db = require('../db/conn');
 
@@ -8,17 +8,17 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true
     },
-    brand : {
-      type: DataTypes.STRING,
-      allowNull: false,
-      required: true  
+    brand: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        required: true
     },
     price: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
-        required:true
+        required: true
     }
 })
 
 
-module.exports = Product;
+module.exports = Product

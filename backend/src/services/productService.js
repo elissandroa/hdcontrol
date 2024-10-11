@@ -1,11 +1,9 @@
 const repository = require('../repositories/productRepository');
-const getToken = require('../helpers/get-token');
-
 
 module.exports = class ProductService {
 
     static async postProductService(product) {
-        let msg = '';
+          let msg = '';
         try {
             const descriptionEmpty = product.description.length;
             const brandEmpty = product.brand.length;
@@ -25,7 +23,7 @@ module.exports = class ProductService {
                 msg = { message: 'O campo preço é obritatório' };
                 return msg;
             }
-
+            
             const newProduct = await repository.postProdutRepository(product);
 
             return newProduct;
@@ -57,7 +55,7 @@ module.exports = class ProductService {
     static async getProduct(id) {
         let msg = '';
         try {
-            const product = await repository.getUsersRepositoryById(id);
+            const product = await repository.getProductsRepositoryById(id);
             if (product === null) {
                 msg = "Produto não encontrado!";
                 return msg;
@@ -72,10 +70,10 @@ module.exports = class ProductService {
 
     }
 
-    static async getProductServiceByName(name) {
+    static async getProductServiceByName(brand) {
         let msg = '';
         try {
-            const products = await repository.getProductRepositoryByName(name);
+            const products = await repository.getProductRepositoryByName(brand);
             return products;
         } catch (error) {
             console.log(error);
@@ -84,7 +82,7 @@ module.exports = class ProductService {
         }
     }
 
-    static async patchProductService(user, id) {
+    static async patchProductService(product, id) {
         let msg = '';
         try {
             const updatedProduct = await repository.patchProductRepository(product, id);

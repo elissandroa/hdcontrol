@@ -1,5 +1,6 @@
 const express = require('express');
 const UserRouter = require('./src/routes/userRoutes');
+const ProducRoute = require('./src/routes/productRoutes');
 const  cors  = require('cors');
 const conn = require('./src/db/conn');
 const PORT = process.env.PORT;
@@ -12,6 +13,7 @@ function createApp() {
     app.use(cors());
 
     app.use('/api', UserRouter);
+    app.use('/api/prod', ProducRoute);
 
     conn
         .sync()

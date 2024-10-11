@@ -2,9 +2,10 @@ const Product = require('../models/Product');
 
 
 module.exports = class ProductRepository {
+
     static async postProdutRepository(product) {
-        const newUser = await Product.create(product);
-        return newUser;
+        const newProduct = await Product.create(product);
+        return newProduct;
     }
 
     static async getProductsRepository() {
@@ -17,13 +18,13 @@ module.exports = class ProductRepository {
         return product;
     }
 
-    static async getProductRepositoryByName(name) {
-        const product = await Product.findAll({ where: { name: name } });
+    static async getProductRepositoryByName(brand) {
+        const product = await Product.findAll({ where: { brand: brand } });
         return product;
     }
 
     static async patchProductRepository(product, id) {
-        await Product.update(user, { where: { id: id } });
+        await Product.update(product, { where: { id: id } });
         const productUpdated = await Product.findByPk(id);
         return productUpdated;
     }
