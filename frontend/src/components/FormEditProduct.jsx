@@ -10,7 +10,7 @@ export const FormEditProduct = ({ onCloseUpdateForm, updateId, updateStatus, set
 
     useEffect(() => {
         try {
-            axios.get(`http://localhost:8000/products/${updateId}`)
+            axios.get(`http://localhost:5000/api/prod/products/${updateId}`)
                 .then((response) => setProduct(response.data));
         } catch (error) {
             console.log(error)
@@ -38,7 +38,7 @@ export const FormEditProduct = ({ onCloseUpdateForm, updateId, updateStatus, set
             brand,
             price
         }
-        axios.put(`http://localhost:8000/products/${updateId}`, product);
+        axios.put(`http://localhost:5000/api/prod/products/${updateId}`, product);
         getProducts();
         setUpdateStatus(!updateStatus);
         onCloseUpdateForm();

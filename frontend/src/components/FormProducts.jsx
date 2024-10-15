@@ -21,7 +21,7 @@ export const FormProducts = () => {
 
     useEffect(() => {
         const getProducts = async () => {
-            await axios.get("http://localhost:8000/products")
+            await axios.get("http://localhost:5000/api/prod/products")
                 .then((response) => setProducts(response.data))
                 .catch((err) => console.log(err));
         }
@@ -42,13 +42,13 @@ export const FormProducts = () => {
 
     const onDelete = (id) => {
         try {
-            axios.delete(`http://localhost:8000/products/${id}`);
+            axios.delete(`http://localhost:5000/api/prod/products/${id}`);
         } catch (error) {
             console.log("Falha ao excluir:", error);
         } finally {
             onCloseDeleteModal();
         }
-        axios.get("http://localhost:8000/products")
+        axios.get("http://localhost:5000/api/prod/products")
             .then((response) => setProducts(response.data));
         if (!products.filter((prod) => prod.id === id)) {
             const newProducts = products.filter((product) => product.id !== id);
@@ -60,7 +60,7 @@ export const FormProducts = () => {
 
     const getProducts = async () => {
         try {
-            axios.get("http://localhost:8000/products")
+            axios.get("http://localhost:5000/api/prod/products")
                 .then((response) => setProducts(response.data))
         } catch (error) {
             console.log(error);
@@ -79,7 +79,7 @@ export const FormProducts = () => {
     const onSearch = async () => {
         if (search) {
             try {
-                await axios.get(`http://localhost:8000/products?brand=${search}`)
+                await axios.get(`http://localhost:5000/api/prod/products/q?brand=${search}`)
                     .then((response) => setProducts(response.data))
             } catch (error) {
                 console.log(error);
@@ -117,7 +117,6 @@ export const FormProducts = () => {
                         <th>ID</th>
                         <th>Descrição</th>
                         <th>Marca</th>
-                        <th>Valor</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
@@ -129,7 +128,6 @@ export const FormProducts = () => {
                                 <td>{product.id}</td>
                                 <td>{product.description}</td>
                                 <td>{product.brand}</td>
-                                <td>{product.price}</td>
                                 <td className='crudIconEdit' onClick={() => onModalEdit(setUpdateId(product.id))}><FaRegEdit /></td>
                                 <td className='crudIconDelete' onClick={() => onModalDelete(setDelId(product.id))}><RiDeleteBin5Line /></td>
                             </tr>

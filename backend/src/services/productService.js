@@ -7,7 +7,6 @@ module.exports = class ProductService {
         try {
             const descriptionEmpty = product.description.length;
             const brandEmpty = product.brand.length;
-            const priceEmpty = product.price.length;
 
 
             if (!descriptionEmpty) {
@@ -19,11 +18,6 @@ module.exports = class ProductService {
                 msg = { message: 'O campo marca é obritatório' };
                 return msg;
             }
-            if (!priceEmpty) {
-                msg = { message: 'O campo preço é obritatório' };
-                return msg;
-            }
-            
             const newProduct = await repository.postProdutRepository(product);
 
             return newProduct;

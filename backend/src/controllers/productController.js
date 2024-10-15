@@ -34,12 +34,11 @@ module.exports = class ProductController {
     }
 
     static async patchProductController(req, res) {
-        const { description, brand, price } = req.body;
+        const { description, brand } = req.body;
         const id = req.params.id;
         const product = {
             description,
             brand,
-            price
         }
 
         console.log(product)

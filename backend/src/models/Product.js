@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
-
 const db = require('../db/conn');
+
+const Order = require('./Order');
+const OrderProduct = require('./OrderProduct');
+
 
 const Product = db.define('Product', {
     description: {
@@ -12,13 +15,18 @@ const Product = db.define('Product', {
         type: DataTypes.STRING,
         allowNull: false,
         required: true
-    },
-    price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-        required: true
     }
 })
 
 
-module.exports = Product
+Product.belongsToMany(Order, {
+    through: OrderProduct,
+    foreignKey: 'idProduct',
+})
+
+Order.belongsToMany(Product, {
+    through: OrderProduct,
+    foreignKey: 'idOrder',
+})
+
+module.exports = Product;
