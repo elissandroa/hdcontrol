@@ -51,10 +51,8 @@ export default function useAuth() {
             const data = await api.post('/users/login', user).then((response) => {
                 return response.data;
             })
-
             await authUser(data);
-            await role();
-        } catch (error) {
+         } catch (error) {
             console.log(error);
         }
 

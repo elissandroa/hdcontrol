@@ -8,7 +8,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [service, setService] = useState("");
+    const [servicing, setServicing] = useState("");
     const [notes, setNotes] = useState("");
     const [order, setOrder] = useState([]);
     const [error, setError] = useState("");
@@ -18,7 +18,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
 
     const getProducts = async () => {
         try {
-            await axios.get("http://localhost:8000/products")
+            await axios.get("http://localhost:5000/api/prod/products")
                 .then((response) => setProducts(response.data));
         } catch (error) {
             console.log(error);
@@ -27,16 +27,17 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
     }
     const getOrder = async () => {
         try {
-            await axios.get(`http://localhost:8000/orders/${osId}`)
+            await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
                 .then((response) => setOrder(response.data));
         } catch (error) {
             console.log(error);
         }
     }
 
-    let itemsEdit = order.items;
+    let itemsEdit = order.Products;
 
-    const totalAmount = () => {
+
+    const totalAmount = async () => {
         let total = 0;
         if (!itemsEdit) return;
         itemsEdit.forEach((item) => {
@@ -53,45 +54,43 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
     }, [])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const newOrder = await axios.get(`http://localhost:5000/api/order/orders/${osId}`);
+        delete newOrder.User;
+        delete newOrder.createdAt;
+        delete newOrder.updatedAt;
+        delete newOrder.amount;
+        delete newOrder.Products;
+        delete newOrder.id;
         if (description === "" || description === "Selecione um produto") {
             setError("Escolha um produto!");
             return;
         };
 
-        let biggest = 0;
-        for (let index = 0; index < order.items.length; index++) {
-            biggest = order.items[index].id > biggest ? order.items[index].id : biggest;
-        }
-        biggest++;
-        
         const newItem = {
-            "id": biggest,
-            "quantity": quantity,
-            "description": description,
-            "price": price,
-            "service": service,
-            "notes": notes
+            UserId: order.UserId,
+            idProduct: parseInt(description),
+            idOrder: parseInt(osId),
+            quantity: parseInt(quantity),
+            price: parseFloat(price),
+            servicing,
+            notes
         }
-        if (!order) return;
-        const item = newItem;
-        if (![order.items][0]) return;
-        [order.items][0].push(item);
-        insertItem();
-    }
+        let items = [];
 
-    const insertItem = async () => {
-        const newOrder = {
-            client: order.client,
-            amount: totalAmount(),
-            status: order.status,
-            payed: order.payed,
-            items: order.items
+        for (let i = 0; i < itemsEdit.length; i++) {
+            items.push(itemsEdit[i].OrderProduct);
         }
-        await axios.patch(`http://localhost:8000/orders/${osId}`, newOrder);
+        items.push(newItem);
+        newOrder.items = items;
+
+        await insertItem(newOrder);
         setUpdateStatus((prev) => prev + 1);
         onClose();
+    }
+    async function insertItem(newOrder) {
+        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
     }
 
 
@@ -118,7 +117,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
                             <option selected>Selecione um produto</option>
                             {
                                 products && products.map((prod, key) => (
-                                    <option key={key} value={prod.description}>{prod.description}
+                                    <option key={key} value={parseInt(prod.id)}>{prod.description}
                                     </option>
                                 ))}
                         </select>
@@ -130,7 +129,8 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
                         </div>
                         <div>
                             <input
-                                type="text"
+                                name="price"
+                                type="number"
                                 placeholder='Valor'
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
@@ -140,14 +140,15 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
                     </div>
                     <div>
                         <div>
-                            <label htmlFor="service"></label>
+                            <label htmlFor="servicing"></label>
                         </div>
                         <div>
                             <input
+                                name="servicing"
                                 type="text"
                                 placeholder='Serviço'
-                                value={service}
-                                onChange={(e) => setService(e.target.value)}
+                                value={servicing}
+                                onChange={(e) => setServicing(e.target.value)}
                                 required
                             />
                         </div>

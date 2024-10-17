@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OrderItem } from "./OrderItem";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,21 +7,38 @@ import { CgAdd } from "react-icons/cg";
 import { RiSave3Fill } from "react-icons/ri";
 
 
-export const NewOs = ({ clients, products }) => {
+export const NewOs = () => {
   const [item, setItem] = useState('');
   const [items, setItems] = useState([]);
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [service, setService] = useState("");
+  const [servicing, setServicing] = useState("");
   const [notes, setNotes] = useState("");
   const [id, setId] = useState(0);
+  const [userId, setUserId] = useState(null);
   const [count, setCount] = useState(0);
-  const [client, setClient] = useState("");
-  const navigate = useNavigate();
+  const [users, setUsers] = useState("");
   const [render, setRender] = useState(0);
+  const [client, setClient] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
+
+
+
+
+  useEffect(() => {
+    const LOCAL_URL = "http://localhost:5000/api";
+    axios.get(`${LOCAL_URL}/users`)
+      .then((response) => setUsers(response.data));
+
+    axios.get(`${LOCAL_URL}/prod/products`)
+      .then((response) => setProducts(response.data));
+  }, [])
 
   let amount = 0;
+
 
   const addItem = (e) => {
     e.preventDefault();
@@ -31,8 +48,9 @@ export const NewOs = ({ clients, products }) => {
       alert("Informe o cliente");
       return;
     }
+    const itemDesc = description.split(',');
     setId((prev) => prev + 1);
-    items.push({ id, quantity, description, price, service, notes });
+    items.push({ id, idProduct: itemDesc[0], prodDesc: itemDesc[1], idOrder: 'idorder', quantity, price, servicing, notes });
     ResetOrdem();
   }
 
@@ -41,7 +59,7 @@ export const NewOs = ({ clients, products }) => {
     setPrice("");
     setQuantity("");
     setDescription("");
-    setService("");
+    setServicing("");
     setNotes("");
   };
 
@@ -67,17 +85,17 @@ export const NewOs = ({ clients, products }) => {
 
   const createOrder = async (e) => {
     e.preventDefault();
+
     if (client) {
-      totalAmount();
       const order = {
-        client: client,
-        amount: amount,
-        data_entrega: "pendente",
+        UserId: client,
+        amount,
+        dataEntrega: "pendente",
         status: "pendente",
-        payed: false,
+        payed: true,
         items: items
       }
-      axios.post("http://localhost:8000/orders/", order);
+      await axios.post("http://localhost:5000/api/order/orders", order);
       navigate('/');
     } else {
       alert("Informe o cliente");
@@ -91,7 +109,7 @@ export const NewOs = ({ clients, products }) => {
   return (
 
     <div className="newos-container">
-      <form>
+      <form onSubmit={createOrder}>
         <div className="form-container">
           <div className="input-label-container">
             <div>
@@ -101,8 +119,8 @@ export const NewOs = ({ clients, products }) => {
               <select name="Client" id="client" onChange={(e) => setClient(e.target.value)}>
                 <option defaultValue="Selecione um Cliente" className="option-client">Selecione um Cliente</option>
                 {
-                  clients && clients.map((client, key) => (
-                    <option key={key} value={client.name}>{client.name}</option>
+                  users && users.map((client, key) => (
+                    <option key={key} value={client.id}>{client.name}</option>
                   ))
                 }
               </select>
@@ -136,14 +154,14 @@ export const NewOs = ({ clients, products }) => {
           </div>
           <div className="input-label-container">
             <div>
-              <label htmlFor="service">Serviço:</label>
+              <label htmlFor="servicing">Serviço:</label>
             </div>
             <div>
               <input
                 type="text"
-                name="service"
-                value={service}
-                onChange={(e) => setService(e.target.value)}
+                name="servicing"
+                value={servicing}
+                onChange={(e) => setServicing(e.target.value)}
                 className="fnt-12"
               />
             </div>
@@ -171,7 +189,7 @@ export const NewOs = ({ clients, products }) => {
                 <option selected>Selecione um produto</option>
                 {
                   products && products.map((prod, key) => (
-                    <option key={key} value={prod.description}>{prod.description}
+                    <option key={key} value={`${prod.id},${prod.description}`}>{prod.description}
                     </option>
                   ))}
               </select>

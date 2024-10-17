@@ -185,6 +185,12 @@
       "brand": "SAMSUNG",
       "price": "20",
       "id": 31
+    },
+    {
+      "description": "Teste",
+      "brand": "teste",
+      "price": "1",
+      "id": 32
     }
   ],
   "clients": [

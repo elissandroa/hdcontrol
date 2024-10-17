@@ -40,19 +40,23 @@ export const Order = () => {
     let amount;
 
     useEffect(() => {
-        const getData = async () => {
-            await axios.get(`http://localhost:8000/orders/${id}`)
-                .then((response) => setOrder(response.data));
+        const getData = () => {
+            axios.get(`http://localhost:5000/api/order/orders/${id}`)
+                .then((response) => setOrder(response.data))
+                .catch((err) => console.log(err));
         }
         getData();
-    }, [editQuantity, updateStatus]);
+    }, [updateStatus, itemForEdit]);
 
 
-    const totalAmount = () => {
+    let itemsEdit = order.Products;
+
+
+    const totalAmount = async (itemsForCalc) => {
         let total = 0;
-        if (!itemsEdit) return;
-        itemsEdit.forEach((item) => {
-            total += (item.quantity * item.price);
+        if (!itemsForCalc) return;
+        itemsForCalc.forEach((item) => {
+            total += (itemsForCalc.quantity * itemsForCalc.price);
         })
         amount = total;
 
@@ -60,22 +64,12 @@ export const Order = () => {
     }
 
     const updateOrder = async (e, id) => {
-        totalAmount();
-        const newOrder = {
-            client: order.client,
-            amount: amount,
-            data_entrega: order.data_entrega,
-            status: editStatus,
-            payed: payed,
-            items: itemsEdit
-        }
-
-
-        await axios.put(`http://localhost:8000/orders/${osId}`, newOrder);
-        await axios.get(`http://localhost:8000/orders/${osId}`)
+        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
+        await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
             .then((response) => setOrder(response.data));
 
     }
+
 
     const OnClickEdit = (e) => { }
     const OnVisible = (e) => { setVisible(true) }
@@ -100,7 +94,7 @@ export const Order = () => {
         setPayed(!payed);
     }
 
-    let itemsEdit = order.items;
+
 
     const save = () => {
         itemsEdit[index].quantity = editQuantity;
@@ -123,31 +117,44 @@ export const Order = () => {
         save();
     }
 
-    const OnlDelete = async (osId) => {
-        await axios.delete(`http://localhost:8000/orders/${osId}`);
-        navigate('/');
-    }
 
-
-
-    const saveItem = (id) => {
+    const saveItem = async (id) => {
         const newOrder = {
-            client: client,
+            UserId: client,
             amount: amount,
             data_entrega: order.data_entrega,
             status: order.status,
             payed: order.payed,
-            items: items
+            items: itemsEdit
         }
 
-        axios.put(`http://localhost:8000/orders/${osId}`, newOrder);
+        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
 
     }
 
 
-    const OnDeleteItem = (indexId) => {
-        itemsEdit = [itemsEdit][0].filter((item) => item.id !== indexId);
-        updateOrder(osId);
+    const OnDeleteItem = async (indexId) => {
+        const newOrderDelete = await axios.get(`http://localhost:5000/api/order/orders/${osId}`);
+        const newOrder = newOrderDelete.data;
+        delete newOrder.Products;
+        delete newOrder.User;
+        delete newOrder.updatedAt;
+        delete newOrder.createdAt;
+        delete newOrder.id;
+        
+        const itemsForEdit = [];
+        for (let i = 0; i < itemsEdit.length; i++) {
+            itemsForEdit.push(itemsEdit[i].OrderProduct);
+            delete itemsForEdit[i].createdAt;
+            delete itemsForEdit[i].updatedAt;
+        }
+        const itemsAfterDelete = itemsForEdit.filter((item) => item.idProduct != indexId);
+   
+        newOrder.items = itemsAfterDelete;
+   
+        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
+        await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
+            .then((response) => setOrder(response.data));
     }
 
     const onClose = () => {
@@ -171,8 +178,9 @@ export const Order = () => {
         setItemEditVisible(!itemEditVisible);
     }
 
+
     return (
-        order && !order.payed && <div>
+        order && order.payed && <div>
             {visible && <FormAddItemOs onClose={onClose} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} osId={osId} />}
             {itemEditVisible && <FormEditItemOs onCloseEditForm={onCloseEditForm} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} itemForEdit={itemForEdit} osId={osId} indexId={indexId} />}
             {osAdmForm && <FormOsAdm onCloseAdmForm={onCloseAdmForm} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} itemForEdit={itemForEdit} osId={osId} indexId={indexId} />}
@@ -183,12 +191,12 @@ export const Order = () => {
                         {admin && <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button>}
                     </div>
                     <div className='os-header-info'>
-                        <p>OS: {id}</p>
-                        <p>Cliente: {order.client}</p>
-                        <p>Valor: R$ {parseFloat((totalAmount())).toFixed(2)} </p>
+                        <p>OS: {order.id}</p>
+                        <p>Cliente: {order.User.name}</p>
+                        <p>Valor: R$ {parseFloat(order.amount).toFixed(2)} </p>
                     </div>
                     <div>
-                        {admin ? <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button> : <button onClick={() => navigate('/')}>Voltar</button> }
+                        {admin ? <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button> : <button onClick={() => navigate('/')}>Voltar</button>}
                     </div>
                 </div>
                 <table>
@@ -206,15 +214,15 @@ export const Order = () => {
                         </tr>}
                     </thead>
                     <tbody>
-                        {order.items && order.items.map((item, key) => (
+                        {order.Products && order.Products.map((item, key) => (
                             <tr key={key} className='tr-hover'>
                                 <td>{item.id}</td>
-                                <td>{item.quantity}</td>
+                                <td>{item.OrderProduct.quantity}</td>
                                 <td>{item.description}</td>
-                                <td>R$ {parseFloat(item.price).toFixed(2)}</td>
-                                <td>R$ {(item.quantity * item.price).toFixed(2)}</td>
-                                <td>{item.service}</td>
-                                <td>{item.notes}</td>
+                                <td>R$ {parseFloat(item.OrderProduct.price).toFixed(2)}</td>
+                                <td>R$ {(item.OrderProduct.quantity * item.OrderProduct.price).toFixed(2)}</td>
+                                <td>{item.OrderProduct.servicing}</td>
+                                <td>{item.OrderProduct.notes}</td>
                                 {admin && <td onClick={() => editOsItem(item)}><FaRegEdit /></td>}
                                 {admin && <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>}
                             </tr>

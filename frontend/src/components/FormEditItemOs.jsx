@@ -6,28 +6,32 @@ export const FormEditItemOs = ({ onCloseEditForm, setUpdateStatus, updateStatus,
     const [quantity, setQuantity] = useState(0);
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [service, setService] = useState("");
+    const [servicing, setServicing] = useState("");
     const [notes, setNotes] = useState("");
     const [order, setOrder] = useState({});
+    const [idOrder, setIdOrder] = useState("");
+    const [idProduct, setIdProduct] = useState("");
+
 
     let amount;
 
     useEffect(() => {
-        setQuantity(itemForEdit.quantity);
+        setQuantity(itemForEdit.OrderProduct.quantity);
         setDescription(itemForEdit.description);
-        setPrice(itemForEdit.price);
-        setService(itemForEdit.service);
-        setNotes(itemForEdit.notes);
+        setPrice(itemForEdit.OrderProduct.price);
+        setServicing(itemForEdit.OrderProduct.servicing);
+        setNotes(itemForEdit.OrderProduct.notes);
+        setIdProduct(itemForEdit.OrderProduct.idProduct);
         getOrder();
-    }, [])
+      }, [updateStatus])
 
-    let itemsEdit = order.items;
+    let itemsEdit = order.Products;
 
-    const totalAmount = () => {
+    const totalAmount = async () => {
         let total = 0;
         if (!itemsEdit) return;
         itemsEdit.forEach((item) => {
-            total += (item.quantity * item.price);
+            total += (item.OrderProduct.quantity * item.OrderProduct.price);
         })
         amount = total;
 
@@ -36,27 +40,35 @@ export const FormEditItemOs = ({ onCloseEditForm, setUpdateStatus, updateStatus,
 
 
     const getOrder = async (editId) => {
-        await axios.get(`http://localhost:8000/orders/${osId}`)
+        await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
             .then((response) => setOrder(response.data));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const orderItem = {
-            id: indexId,
-            quantity,
-            description,
-            price,
-            service,
-            notes
+            "idProduct": idProduct,
+            "idOrder": osId,
+            "quantity": quantity,
+            "price": price,
+            "servicing": servicing,
+            "notes": notes
         }
-        for (let i = 0; i < order.items.length; i++) {
-            if (order.items[i].id === indexId) {
-                order.items[i] = orderItem;
+        for (let i = 0; i < order.Products.length; i++) {
+            if (order.Products[i].id === indexId) {
+                order.Products[i].OrderProduct = orderItem;
             }
         }
-        order.amount = totalAmount();
-        axios.patch(`http://localhost:8000/orders/${osId}`, order);
+        let lista = [];
+
+        for (let i = 0; i < order.Products.length; i++) {
+            lista.push(order.Products[i].OrderProduct);
+            lista.map((item) => delete item.createdAt);
+            lista.map((item) => delete item.updatedAt);
+        }
+        delete order.Products;
+        order.items = lista;
+        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, order);
         setUpdateStatus(!updateStatus);
         onCloseEditForm();
     }
@@ -103,10 +115,10 @@ export const FormEditItemOs = ({ onCloseEditForm, setUpdateStatus, updateStatus,
                     <div>
                         <input
                             type="text"
-                            name='service'
+                            name='servicing'
                             placeholder='Descrição do serviço'
-                            value={service || ""}
-                            onChange={(e) => setService(e.target.value)}
+                            value={servicing || ""}
+                            onChange={(e) => setServicing(e.target.value)}
                             required
                         />
                     </div>

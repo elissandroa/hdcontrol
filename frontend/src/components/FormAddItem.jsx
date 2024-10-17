@@ -7,11 +7,10 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
     const [description, setDescription] = useState([]);
     const [quantity, setQuantity] = useState();
     const [price, setPrice] = useState();
-    const [service, setService] = useState("");
+    const [servicing, setServicing] = useState("");
     const [notes, setNotes] = useState("");
     const [order, setOrder] = useState({});
     const [products, setProducts] = useState([]);
-    const [amount, setAmount] = useState(order.amount);
     const [visible, setVisible] = useState(true);
  
     const navigate = useNavigate();
@@ -20,9 +19,9 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
 
     useEffect(() => {
         const getData = async () => {
-            await axios.get(`http://localhost:8000/orders/${id}`)
+            await axios.get(`http://localhost:5000/api/order/orders/${id}`)
                 .then((response) => setOrder(response.data));
-            await axios.get("http://localhost:8000/products")
+            await axios.get("http://localhost:5000/prod/products")
                 .then((response) => setProducts(response.data));
         }
         getData();
@@ -45,7 +44,7 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
             "quantity": quantity,
             "description": description,
             "price": price,
-            "service": service,
+            "servicing": servicing,
             "notes": notes
         }
         if (!order) return;
@@ -60,14 +59,13 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
     const insertItem = async () => {
         const newOrder = {
             client: order.client,
-            amount: totalAmount(),
             data_entrega: order.data_entrega,
             status: order.status,
             payed: order.payed,
             items: order.items
         }
-        await axios.put(`http://localhost:8000/orders/${id}`, newOrder);
-        await axios.get(`http://localhost:8000/orders/${id}`)
+        await axios.patch(`http://localhost:5000/api/order/orders/${id}`, newOrder);
+        await axios.get(`http://localhost:5000/api/order/orders/${id}`)
         .then((response) => setOrder(response.data));
         setVisible(false);
     }
@@ -81,6 +79,7 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
 
     return (
         <form className='os-edit-container' onSubmit={handleSubmitNewItem}>
+            <h1>A</h1>
             <div>
                 <input
                     type="number"
@@ -100,8 +99,8 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
             <div>
                 <input type="text"
                     placeholder='Serviço'
-                    value={service}
-                    onChange={(e) => setService(e.target.value)}
+                    value={servicing}
+                    onChange={(e) => setServicing(e.target.value)}
                 />
             </div>
             <div>

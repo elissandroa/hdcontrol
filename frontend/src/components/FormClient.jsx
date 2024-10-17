@@ -9,6 +9,8 @@ import { FormAddClient } from './FormAddClient';
 import { FormAddDeleteConfirm } from './FormAddDeleteConfirm';
 import { FormEditClient } from './FormEditClient';
 
+const URL = "http://localhost:5000/api/users"
+
 export const FormClient = ({ client }) => {
     const [clients, setClients] = useState([]);
     const [open, setOpen] = useState(false);
@@ -21,7 +23,7 @@ export const FormClient = ({ client }) => {
  
     useEffect(() => {
         const getClients = async () => {
-            await axios.get("http://localhost:5000/api/users")
+            await axios.get(`${URL}`)
                 .then((response) => setClients(response.data))
                 .catch((err) => console.log(err));
         }
@@ -43,13 +45,13 @@ export const FormClient = ({ client }) => {
 
     const onDelete = async (id) => {
         try {
-            axios.delete(`http://localhost:5000/api/users/${id}`);
+            axios.delete(`${URL}/${id}`);
         } catch (error) {
             console.log("Falha ao excluir:", error);
         } finally {
             onCloseDeleteModal();
         }
-        axios.get("http://localhost:5000/api/users")
+        axios.get(`${URL}`)
         .then((response) => setClients(response.data));
    
         await getClients();
@@ -57,7 +59,7 @@ export const FormClient = ({ client }) => {
 
     const getClients = async () => {
         try {
-         await axios.get("http://localhost:5000/api/users")
+         await axios.get(`${URL}`)
             .then((response) => setClients(response.data))
         } catch (error) {
             console.log(error);
@@ -76,7 +78,7 @@ export const FormClient = ({ client }) => {
     const onSearch = async () => {
         if(search) {
             try {
-                 await axios.get(`http://localhost:5000/api/users/q?name=${search}`)
+                 await axios.get(`${URL}/q?name=${search}`)
                 .then((response) => setClients(response.data))
             } catch (error) {
                 console.log(error);

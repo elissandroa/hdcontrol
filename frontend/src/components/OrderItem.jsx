@@ -20,10 +20,10 @@ export const OrderItem = ({ items, deleteItem }) => {
                     {items && items.map((prodItem, key) => (
                         <tr key={key}>
                             <td>{prodItem.quantity}</td>
-                            <td>{prodItem.description}</td>
+                            <td>{prodItem.prodDesc}</td>
                             <td>R$ {parseFloat(prodItem.price).toFixed(2)}</td>
                             <td> R$ {(prodItem.quantity * prodItem.price).toFixed(2)}</td>
-                            <td>{prodItem.service}</td>
+                            <td>{prodItem.servicing}</td>
                             <td>{prodItem.notes}</td>
                             <td className='td-delete' onClick={() => deleteItem(prodItem.id)}><RiDeleteBin5Line /></td>
                         </tr>

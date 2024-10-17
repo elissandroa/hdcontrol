@@ -100,9 +100,9 @@ module.exports = class UserService {
         try {
             const password = user.password;
 
-            const salt = await bcrypt.genSalt(12);
+           /*  const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(password, salt);
-            user.password = passwordHash;
+            user.password = passwordHash; */
 
             const updatedUser = await repository.patchUserRepository(user, id);
             updatedUser.password = undefined;

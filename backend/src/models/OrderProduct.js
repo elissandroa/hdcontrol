@@ -12,6 +12,16 @@ const OrderProduct = db.define('OrderProduct', {
         type: DataTypes.INTEGER,
         allowNull: false,
         required: true
+    },
+    servicing: {
+        type: DataTypes.TEXT,
+        required: false,
+        allowNull: true
+    },
+    notes: {
+        type: DataTypes.TEXT,
+        required: false,
+        allowNull: true
     }
 })
 

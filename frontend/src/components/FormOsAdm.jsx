@@ -13,7 +13,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
     useEffect(() => {
         const getOrder = async () => {
             try {
-                await axios.get(`http://localhost:8000/orders/${osId}`)
+                await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
                     .then((response) => setOrder(response.data));
             } catch (error) {
                 console.log(error);
@@ -34,7 +34,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
         order.data_entrega = dataEntrega;
         order.status = status;
         order.payed = payed === "true" ? true : false;
-        axios.patch(`http://localhost:8000/orders/${osId}`, order);
+        axios.patch(`http://localhost:5000/api/order/orders/${osId}`, order);
         setUpdateStatus(!updateStatus);
         onCloseAdmForm();
         if(payed === "true"){

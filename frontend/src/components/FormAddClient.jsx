@@ -6,13 +6,16 @@ export const FormAddClient = ({onClose}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [password, setPassowrd] = useState("");
    
     const handleSubmit = (e) => {
         e.preventDefault();
         const client = {
             name,
             email,
-            phone
+            phone,
+            password,
+            RoleId: 1
         }
         axios.post("http://localhost:5000/api/users", client);
         onClose();
@@ -50,6 +53,15 @@ export const FormAddClient = ({onClose}) => {
                             placeholder='Telefone do cliente'
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder='Digite a Senha'
+                            value={password}
+                            onChange={(e) => setPassowrd(e.target.value)}
                             required
                         />
                     </div>

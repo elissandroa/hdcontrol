@@ -14,7 +14,7 @@ export const FormAddProduct = ({ onClose }) => {
             brand,
             price
         }
-        axios.post("http://localhost:8000/products", product);
+        axios.post("http://localhost:5000/api/prod/products", product);
         onClose();
 
     }

@@ -23,8 +23,7 @@ const Order = db.define('Order', {
         type: DataTypes.BOOLEAN,
         required: true,
         allowNull: false
-    },
-
+    }
 })
 
 Order.belongsTo(User)

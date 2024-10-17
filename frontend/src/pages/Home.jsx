@@ -12,8 +12,7 @@ export const Home = () => {
 
 
   useEffect(() => {
-    console.log(admin);
-    axios.get("http://localhost:8000/orders")
+    axios.get("http://localhost:5000/api/order/orders")
       .then((response) => setOrders(response.data));
   }, [])
 

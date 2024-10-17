@@ -5,7 +5,7 @@ module.exports = class OrderController {
 
     static async postOrderController(req, res) {
 
-        const { UserId, amount, dataEntrega, status, payed, items } = req.body;
+        const { UserId, amount, dataEntrega, status, payed, notes, items } = req.body;
 
         const order = {
             UserId,
