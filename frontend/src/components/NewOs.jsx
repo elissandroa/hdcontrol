@@ -92,7 +92,7 @@ export const NewOs = () => {
         amount,
         dataEntrega: "pendente",
         status: "pendente",
-        payed: true,
+        payed: false,
         items: items
       }
       await axios.post("http://localhost:5000/api/order/orders", order);

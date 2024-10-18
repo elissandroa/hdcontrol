@@ -3,9 +3,9 @@ const repository = require('../repositories/orderRepository');
 module.exports = class orderService {
 
     static async postOrderService(order) {
-          let msg = '';
+        let msg = '';
         try {
-                        
+
             const newOrder = await repository.postOrderRepository(order);
 
             return newOrder;
@@ -21,10 +21,6 @@ module.exports = class orderService {
         let msg = '';
         try {
             const orders = await repository.getOrdersRepository();
-            if (orders.length === 0) {
-                msg = 'Não há produtos cadastrados!';
-                return msg;
-            }
             return orders;
         } catch (error) {
             console.log(error);
@@ -51,7 +47,7 @@ module.exports = class orderService {
 
 
     }
-    
+
     static async patchOrderService(order, id) {
         let msg = '';
         try {

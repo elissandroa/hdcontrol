@@ -4,3 +4,22 @@
     margin-top: 10px;
     margin-bottom: 50px;
 }
+
+.button-add-order-service{
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.text-orders-not-found {
+    margin-top: 3em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-pass-icon {
+    font-size: 1em;
+}

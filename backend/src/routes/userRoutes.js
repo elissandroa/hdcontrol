@@ -12,6 +12,7 @@ router.patch('/users/:id', UserController.patchUserController);
 router.post('/users', UserController.postUserController);
 router.get('/users/q', UserController.getUserControllerByName);
 router.get('/users/:id', UserController.getUserControllerById);
+router.post('/users/password', UserController.checkPassword);
 router.get('/users', UserController.getUserController);
 
 

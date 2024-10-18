@@ -52,7 +52,7 @@ export default function useAuth() {
                 return response.data;
             })
             await authUser(data);
-         } catch (error) {
+        } catch (error) {
             console.log(error);
         }
 
@@ -61,7 +61,8 @@ export default function useAuth() {
 
     async function authUser(data) {
         setAuthenticated(true)
-        localStorage.setItem('token', JSON.stringify(data.token))
+        localStorage.setItem('token', JSON.stringify(data.token));
+        localStorage.setItem('userId', JSON.stringify(data.user.id));
         navigate("/");
     }
 

@@ -14,7 +14,6 @@ export const Navbar = () => {
       <div>
         <ul className='menu-right'>
           <li><Link to={'/'}>Home</Link></li>
-          {admin && <li><Link to={'/order_service'}>Nova O.S</Link></li>}
           {admin && <li><Link to={'/clients'}>Clientes</Link></li>}
           {admin && <li><Link to={'/products'}>Produtos</Link></li>}
           <li onClick={() => logout()}><Link>Sair</Link></li>

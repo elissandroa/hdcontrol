@@ -18,6 +18,20 @@
     text-align: center;
 }
 
+.order-container .order-list-header {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   position: relative
+}
+
+.order-container .order-list-header button {
+    position: absolute;
+    top:20px;
+    left: 10px;
+}
+
 td {
     width:300px;
 }

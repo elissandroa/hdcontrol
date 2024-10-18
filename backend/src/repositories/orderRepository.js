@@ -41,7 +41,6 @@ module.exports = class OrderRepository {
     }
 
     static async patchOrderRepository(order, id) {
-        console.log("Repository **************************************************************************************")
         const orderExists = await Order.findByPk(id);
 
         if (orderExists) {

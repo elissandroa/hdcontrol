@@ -34,22 +34,25 @@ export const Order = () => {
     const [itemForEdit, setItemForEdit] = useState({});
     const [indexId, setIndexId] = useState(null);
     const [osAdmForm, setOsAdmForm] = useState(false);
-
+  
     const { admin } = useContext(Context);
 
     let amount;
 
     useEffect(() => {
-        const getData = () => {
-            axios.get(`http://localhost:5000/api/order/orders/${id}`)
+        const getData = async () => {
+            await axios.get(`http://localhost:5000/api/order/orders/${id}`)
                 .then((response) => setOrder(response.data))
                 .catch((err) => console.log(err));
+
         }
+        
         getData();
-    }, [updateStatus, itemForEdit]);
 
-
+    }, [updateStatus, itemForEdit, id]);
+        
     let itemsEdit = order.Products;
+    let user = order.User;
 
 
     const totalAmount = async (itemsForCalc) => {
@@ -141,7 +144,7 @@ export const Order = () => {
         delete newOrder.updatedAt;
         delete newOrder.createdAt;
         delete newOrder.id;
-        
+
         const itemsForEdit = [];
         for (let i = 0; i < itemsEdit.length; i++) {
             itemsForEdit.push(itemsEdit[i].OrderProduct);
@@ -149,9 +152,9 @@ export const Order = () => {
             delete itemsForEdit[i].updatedAt;
         }
         const itemsAfterDelete = itemsForEdit.filter((item) => item.idProduct != indexId);
-   
+
         newOrder.items = itemsAfterDelete;
-   
+
         await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
         await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
             .then((response) => setOrder(response.data));
@@ -160,6 +163,7 @@ export const Order = () => {
     const onClose = () => {
         setVisible(!visible);
     }
+
 
     const onCloseEditForm = () => {
         setItemEditVisible(!itemEditVisible);
@@ -180,7 +184,7 @@ export const Order = () => {
 
 
     return (
-        order && order.payed && <div>
+       user && order &&  <div>
             {visible && <FormAddItemOs onClose={onClose} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} osId={osId} />}
             {itemEditVisible && <FormEditItemOs onCloseEditForm={onCloseEditForm} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} itemForEdit={itemForEdit} osId={osId} indexId={indexId} />}
             {osAdmForm && <FormOsAdm onCloseAdmForm={onCloseAdmForm} setUpdateStatus={setUpdateStatus} updateStatus={updateStatus} itemForEdit={itemForEdit} osId={osId} indexId={indexId} />}
@@ -192,7 +196,7 @@ export const Order = () => {
                     </div>
                     <div className='os-header-info'>
                         <p>OS: {order.id}</p>
-                        <p>Cliente: {order.User.name}</p>
+                        <p>Cliente: {user.name}</p>
                         <p>Valor: R$ {parseFloat(order.amount).toFixed(2)} </p>
                     </div>
                     <div>

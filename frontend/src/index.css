@@ -15,6 +15,84 @@ body {
   flex-direction: column;
 }
 
+.newos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+input,
+select {
+  width: 250px;
+  height: 40px;
+  border-radius: .5rem;
+  outline: none;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: blue;
+}
+
+
+#description {
+  width: 300px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.fnt-12 {
+  font-size: 12px;
+}
+
+.input-buttons-container {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+  justify-content: space-between;
+}
+
+.addButton {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  opacity: .4;
+  transition: .3s;
+}
+
+.saveButton {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  opacity: .4;
+  transition: .3s;
+}
+
+.option-client,
+select {
+  width: 300px;
+}
+
 a {
   text-decoration: none;
   color: #FFF;
@@ -28,7 +106,7 @@ a {
 
 .td-delete {
   color: red;
-  cursor:Pointer
+  cursor: Pointer
 }
 
 .td-delete:hover {

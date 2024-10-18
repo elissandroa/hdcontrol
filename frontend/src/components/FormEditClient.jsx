@@ -7,6 +7,7 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [client, setClient] = useState({});
+    const [password, setPassword] = useState("");
 
     useEffect(() => {
         try {
@@ -36,7 +37,8 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
         const client = {
             name,
             email,
-            phone
+            phone,
+            password
         }
         axios.patch(`http://localhost:5000/api/users/${updateId}`, client);
         getClients();
@@ -84,6 +86,17 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
                             required
                         />
                     </div>
+                    <div>
+                        <input
+                            type="password"
+                            name='password'
+                            placeholder='Digite a nova senha'
+                            value={password || ""}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+
                     <div className='buttons-container'>
                         <button type='submit' className='btnAdd'>Atualizar</button>
                         <button onClick={onCloseUpdateForm} className='btnCancel'>Cancelar</button>

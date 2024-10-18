@@ -64,5 +64,9 @@ module.exports = class UserController {
         const currentUser = await service.checkUserService(req, res);
     }
 
+    static async checkPassword(req, res) {
+        const passwordStatus = await service.chekPasswordService(req, res);
+    }
+
 
 }

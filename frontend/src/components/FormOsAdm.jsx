@@ -27,11 +27,11 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
     const handleSubmit = (e) => {
         e.preventDefault();
         const orderItem = {
-            data_entrega: dataEntrega,
+            dataEntrega,
             status,
             payed
         }
-        order.data_entrega = dataEntrega;
+        order.dataEntrega = dataEntrega;
         order.status = status;
         order.payed = payed === "true" ? true : false;
         axios.patch(`http://localhost:5000/api/order/orders/${osId}`, order);
@@ -45,7 +45,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
 
     useEffect(() => {
         setStatus(order.status);
-        setDataEntrega(order.data_entrega);
+        setDataEntrega(order.dataEntrega);
         setPayed(order.payed);
     }, [order])
 
@@ -74,9 +74,9 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
                     </div>
                     <div>
                         <select name="payed" id="payed" onChange={(e) => setPayed(e.target.value)}>
-                            <option value="payed" className="option-form-adm">{!payed ? "Pagamento pendente" : "Pago"}</option>
-                            <option value="true">Sim</option>
-                            <option value="false">Não</option>
+                            <option value="payed"  className="option-form-adm">{!payed ? "Pendente" : "Pago"}</option>
+                            <option value="true">Confirmar Pagamento</option>
+                            <option value="false">Pendente</option>
                         </select>
                     </div>
                     <div className='buttons-container'>

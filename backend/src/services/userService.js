@@ -100,12 +100,11 @@ module.exports = class UserService {
         try {
             const password = user.password;
 
-           /*  const salt = await bcrypt.genSalt(12);
+            const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(password, salt);
-            user.password = passwordHash; */
+            user.password = passwordHash;
 
             const updatedUser = await repository.patchUserRepository(user, id);
-            updatedUser.password = undefined;
             return updatedUser;
         } catch (error) {
             console.log(error);
@@ -164,5 +163,22 @@ module.exports = class UserService {
         }
 
         res.status(200).json(currentUser);
+    }
+
+    static async chekPasswordService(req, res) {
+        const password = req.body.password;
+        const id = req.body.id;
+
+        const user = await repository.getUsersRepositoryById(id);
+        
+        const checkPassword = await bcrypt.compare(password, user.password);
+            if (!checkPassword) {
+                res.status(200).json({message: 0})
+                return;
+            } else {
+                res.status(200).json({message: "true"})
+                return;
+            }
+            
     }
 }
