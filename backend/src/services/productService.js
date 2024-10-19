@@ -3,7 +3,7 @@ const repository = require('../repositories/productRepository');
 module.exports = class ProductService {
 
     static async postProductService(product) {
-          let msg = '';
+        let msg = '';
         try {
             const descriptionEmpty = product.description.length;
             const brandEmpty = product.brand.length;
@@ -48,18 +48,15 @@ module.exports = class ProductService {
 
     static async getProduct(id) {
         let msg = '';
-        try {
-            const product = await repository.getProductsRepositoryById(id);
-            if (product === null) {
-                msg = "Produto não encontrado!";
-                return msg;
-            }
-            return product;
-        } catch (error) {
-            console.log(error);
-            msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
-            return msg;
+
+        const product = await repository.getProductsRepositoryById(id);
+        if (product === null) {
+            return 0;
         }
+        return product;
+
+        msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
+
 
 
     }
@@ -89,13 +86,7 @@ module.exports = class ProductService {
     }
 
     static async deleteProductService(id) {
-        try {
-            repository.deleteProductRepository(id);
-        } catch (error) {
-            console.log(error);
-            msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
-            return msg;
-        }
+        const productExists = repository.deleteProductRepository(id);
+        return productExists;
     }
-
 }

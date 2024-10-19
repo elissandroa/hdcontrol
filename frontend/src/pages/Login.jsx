@@ -9,16 +9,17 @@ import { Context } from '../context/UserContext';
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
   const { login, authenticated } = useContext(Context);
 
   const navigate = useNavigate();
 
 
-useEffect(() => {
-  if(authenticated){
-    navigate("/");
-  }
-},[])
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/");
+    }
+  }, [])
 
 
   const handleSubmit = async (e) => {
@@ -27,7 +28,12 @@ useEffect(() => {
       email,
       password
     }
-    await login(loginData);
+    const  loginResponse = await login(loginData);
+    if(loginResponse === undefined){
+      setError("Email ou senha inválidos!")
+      return;
+    }
+    
     navigate('/');
   }
 
@@ -56,6 +62,7 @@ useEffect(() => {
               placeholder="Digite sua senha"
             />
           </div>
+          <p className='msg_error'>{`${error}`}</p>
           <button type="submit">Entrar</button>
         </div>
       </form>

@@ -33,7 +33,10 @@ module.exports = class ProductRepository {
         const productExists = await Product.findOne({ where: { id: id } });
         if (productExists) {
             Product.destroy({ where: { id: id } });
+        } else {
+            return 0;
         }
+        return productExists;
     }
 
 }

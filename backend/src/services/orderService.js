@@ -31,43 +31,18 @@ module.exports = class orderService {
     }
 
     static async getOrder(id) {
-        let msg = '';
-        try {
-            const order = await repository.getOrdersRepositoryById(id);
-            if (order === null) {
-                msg = "Pedido não encontrado!";
-                return msg;
-            }
-            return order;
-        } catch (error) {
-            console.log(error);
-            msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
-            return msg;
-        }
-
-
+        const order = await repository.getOrdersRepositoryById(id);
+        return order;
     }
 
     static async patchOrderService(order, id) {
-        let msg = '';
-        try {
-            const updatedOrder = await repository.patchOrderRepository(order, id);
-            return updatedOrder;
-        } catch (error) {
-            console.log(error);
-            msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
-            return msg;
-        }
+        const updatedOrder = await repository.patchOrderRepository(order, id);
+        return updatedOrder;
     }
 
     static async deleteOrderService(id) {
-        try {
-            repository.deleteOrderRepository(id);
-        } catch (error) {
-            console.log(error);
-            msg = 'Serviço não disponível no momento, tente novamente mais tarde!';
-            return msg;
-        }
+        const deletedOrder = repository.deleteOrderRepository(id);
+        return deletedOrder;
     }
 
 }

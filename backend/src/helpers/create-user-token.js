@@ -9,7 +9,7 @@ const createUserToken = async (user, req, res) => {
 
     user.password = undefined;
     
-    res.status(200).json({
+    res.status(201).json({
         message: 'Você está autenticado',
         user,
         token: token,

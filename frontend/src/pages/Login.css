@@ -10,6 +10,7 @@
     border-radius: 5px;
     margin: 0 auto;
     margin-top: 30vh;
+    padding: 4em;
    }
 
 .login-container h1 {
@@ -45,6 +46,7 @@ button {
     color: blue;
     font-weight: bold;
     text-transform: uppercase;
+    margin-bottom: 1em;
 }
 
 form {
@@ -52,4 +54,10 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.msg_error {
+    color: #FFF;
+    margin-top: 0;
+    font-size: 1em;
 }

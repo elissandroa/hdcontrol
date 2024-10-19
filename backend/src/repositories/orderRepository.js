@@ -95,7 +95,7 @@ module.exports = class OrderRepository {
         }
 
         if (orderItems.length < order.items.length) {
-            
+
             for (let i = 0; i < order.items.length; i++) {
                 listProductReq.push(order.items[i].idProduct);
             }
@@ -118,18 +118,14 @@ module.exports = class OrderRepository {
         order.amount = total;
 
         await Order.update(order, { where: { id: id } });
-        
+
         return order;
 
     }
 
     static async deleteOrderRepository(id) {
         const orderExists = await Order.findOne({ where: { id: id } });
-        if (orderExists) {
-            Order.destroy({ where: { id: id } });
-        }
+        const orderDeleted = Order.destroy({ where: { id: id } });
+        return orderDeleted;
     }
-
 }
-
-

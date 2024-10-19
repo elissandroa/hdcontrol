@@ -28,7 +28,12 @@ module.exports = class OrderController {
     static async getOrderControllerById(req, res) {
         const id = req.params.id;
         const order = await service.getOrder(parseInt(id));
-        res.status(200).json(order);
+        if (order) {
+            res.status(200).json(order);
+        } else {
+            res.status(422).json({ message: "Ordem não encontrada!" })
+        }
+
     }
 
 
@@ -44,14 +49,23 @@ module.exports = class OrderController {
             items
         }
 
-        const updatedOrder = await service.patchOrderService(order, id);
-        res.status(200).json(updatedOrder);
+        if (order) {
+            const updatedOrder = await service.patchOrderService(order, id);
+            res.status(200).json(updatedOrder);
+        } else {
+            res.status(422).json({ message: "Ordem não encontrada !" });
+        }
+
+
     }
 
     static async deleteOrderController(req, res) {
         const id = req.params.id;
-        await service.deleteOrderService(id);
-        res.status(200).json({ message: 'Deletado com sucesso!' });
+        const deletedOrder = await service.deleteOrderService(id);
+        if (deletedOrder) {
+            res.status(200).json({ message: 'Deletado com sucesso!' });
+        } else {
+            res.status(422).json({ message: "Ordem não encontrada !" })
+        }
     }
-
 }

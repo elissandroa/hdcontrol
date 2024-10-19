@@ -47,6 +47,9 @@ tr:nth-child(odd) {
     color: #000;
 }
 
+.order-list-link td {
+    width: 20px;
+}
 .table-container {
     margin-bottom: 100px;
 

@@ -62,7 +62,7 @@ export const OrderList = ({loadNew}) => {
 
               <tr key={key}>
                 <td>{order.id}</td>
-                {admin &&<td>{order.User.name}</td>}
+                {admin && order.User && <td>{order.User.name}</td>}
                 <td><span>R$ </span>{parseFloat(order.amount).toFixed(2)}</td>
                 <td>{order.status}</td>
                 <Link to={`/order/${order.id}`} ><td className="order-list-link"><AiOutlineFolderOpen /></td></Link>
