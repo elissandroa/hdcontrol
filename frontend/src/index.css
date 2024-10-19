@@ -9,7 +9,7 @@
 
 body {
   background: radial-gradient(ellipse at center, rgba(64, 150, 238, 1) 0%, rgba(64, 150, 238, 1) 100%);
-  width: 100vw;
+  width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
