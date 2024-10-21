@@ -2,18 +2,16 @@ const { Sequelize }  = require('sequelize');
 
 
 const sequelize = new Sequelize(
-    process.env.POSTGRES_DATABASE, 
-    process.env.POSTGRES_USER, 
-    process.env.POSTGRES_PASSWORD, {
-    host: process.env.POSTGRES_URL,
-    dialect: 'postgres',
-    port: 5432,
-    logging: false,
+    process.env.DATABASE_NAME, 
+    process.env.DATABASE_USER, 
+    process.env.DATABASE_PASSWORD, {
+    host: process.env.DATABASE_HOST,
+    dialect: 'mysql',
   });
 
 try {
     sequelize.authenticate()
-    console.log(`Sequelize: Conectado ao banco: ${process.env.POSTGRES_DATABASE} `)
+    console.log(`Sequelize: Conectado ao banco: ${process.env.DATABASE_NAME} `)
 } catch (error) {
     console.log("Não foi possível conectar: ", error)
 }

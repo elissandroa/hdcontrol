@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './FormEditProduct.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormEditProduct = ({ onCloseUpdateForm, updateId, updateStatus, setUpdateStatus }) => {
     const [description, setDescription] = useState("");
@@ -10,7 +10,7 @@ export const FormEditProduct = ({ onCloseUpdateForm, updateId, updateStatus, set
 
     useEffect(() => {
         try {
-            axios.get(`http://localhost:5000/api/prod/products/${updateId}`)
+            api.get(`/prod/products/${updateId}`)
                 .then((response) => setProduct(response.data));
         } catch (error) {
             console.log(error)
@@ -38,7 +38,7 @@ export const FormEditProduct = ({ onCloseUpdateForm, updateId, updateStatus, set
             brand,
             price
         }
-        axios.put(`http://localhost:5000/api/prod/products/${updateId}`, product);
+        api.put(`/prod/products/${updateId}`, product);
         getProducts();
         setUpdateStatus(!updateStatus);
         onCloseUpdateForm();

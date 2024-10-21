@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './FormAddProduct.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormAddProduct = ({ onClose }) => {
     const [description, setDescription] = useState("");
@@ -14,7 +14,7 @@ export const FormAddProduct = ({ onClose }) => {
             brand,
             price
         }
-        axios.post("http://localhost:5000/api/prod/products", product);
+        api.post("/prod/products", product);
         onClose();
 
     }

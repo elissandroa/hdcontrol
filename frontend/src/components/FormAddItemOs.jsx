@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './FormAddItemOs.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) => {
 
@@ -18,7 +18,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
 
     const getProducts = async () => {
         try {
-            await axios.get("http://localhost:5000/api/prod/products")
+            await api.get("/prod/products")
                 .then((response) => setProducts(response.data));
         } catch (error) {
             console.log(error);
@@ -27,7 +27,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
     }
     const getOrder = async () => {
         try {
-            await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
+            await api.get(`/order/orders/${osId}`)
                 .then((response) => setOrder(response.data));
         } catch (error) {
             console.log(error);
@@ -56,7 +56,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newOrder = await axios.get(`http://localhost:5000/api/order/orders/${osId}`);
+        const newOrder = await api.get(`/order/orders/${osId}`);
         delete newOrder.User;
         delete newOrder.createdAt;
         delete newOrder.updatedAt;
@@ -90,7 +90,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
         onClose();
     }
     async function insertItem(newOrder) {
-        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
+        await api.patch(`/order/orders/${osId}`, newOrder);
     }
 
 

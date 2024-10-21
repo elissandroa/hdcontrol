@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { OrderItem } from "./OrderItem";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./NewOs.css";
 import { CgAdd } from "react-icons/cg";
 import { RiSave3Fill } from "react-icons/ri";
-
+import api from "../utils/api";
 
 export const NewOs = () => {
   const [item, setItem] = useState('');
@@ -29,11 +28,10 @@ export const NewOs = () => {
 
 
   useEffect(() => {
-    const LOCAL_URL = "http://localhost:5000/api";
-    axios.get(`${LOCAL_URL}/users`)
+    api.get(`/users`)
       .then((response) => setUsers(response.data));
 
-    axios.get(`${LOCAL_URL}/prod/products`)
+    api.get(`/prod/products`)
       .then((response) => setProducts(response.data));
   }, [])
 
@@ -95,7 +93,7 @@ export const NewOs = () => {
         payed: false,
         items: items
       }
-      await axios.post("http://localhost:5000/api/order/orders", order);
+      await put.post("/order/orders", order);
       navigate('/');
     } else {
       alert("Informe o cliente");

@@ -6,7 +6,7 @@ const RoleRoute = require('./src/routes/roleRoutes');
 
 const  cors  = require('cors');
 const conn = require('./src/db/conn');
-const PORT = process.env.PORT;
+const PORT = process.env.SERVER_PORT;
 
 function createApp() {
     const app = express()

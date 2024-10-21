@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import './Home.css'
 import { Orders } from './Orders';
-import axios from 'axios';
 import { Context } from '../context/UserContext';
 import { FormAddOs } from '../components/FormAddOs';
+import api from '../utils/api';
 
 export const Home = () => {
   const [orders, setOrders] = useState([]);
@@ -11,7 +11,7 @@ export const Home = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/order/orders")
+    api.get("/order/orders")
       .then((response) => setOrders(response.data));
   }, [])
 

@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import './Login.css'
 import { Navigate } from 'react-router-dom'
 import { Context } from '../context/UserContext';

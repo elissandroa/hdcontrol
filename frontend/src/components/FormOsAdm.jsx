@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './FormOsAdm.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../utils/api';
 
 export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemForEdit, osId, indexId }) => {
     const [status, setStatus] = useState("");
@@ -13,7 +13,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
     useEffect(() => {
         const getOrder = async () => {
             try {
-                await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
+                await api.get(`/order/orders/${osId}`)
                     .then((response) => setOrder(response.data));
             } catch (error) {
                 console.log(error);
@@ -34,7 +34,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
         order.dataEntrega = dataEntrega;
         order.status = status;
         order.payed = payed === "true" ? true : false;
-        axios.patch(`http://localhost:5000/api/order/orders/${osId}`, order);
+        api.patch(`/order/orders/${osId}`, order);
         setUpdateStatus(!updateStatus);
         onCloseAdmForm();
         if(payed === "true"){

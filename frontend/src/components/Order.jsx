@@ -1,7 +1,6 @@
 import './Order.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import { EditItem } from './EditItem';
 import { FormAddItem } from './FormAddItem';
 import { OrderItem } from './OrderItem';
@@ -11,6 +10,7 @@ import { FormAddItemOs } from './FormAddItemOs';
 import { FormEditItemOs } from './FormEditItemOs';
 import { FormOsAdm } from './FormOsAdm';
 import { Context } from '../context/UserContext';
+import api from '../utils/api';
 
 export const Order = () => {
     const { id } = useParams();
@@ -41,7 +41,7 @@ export const Order = () => {
 
     useEffect(() => {
         const getData = async () => {
-            await axios.get(`http://localhost:5000/api/order/orders/${id}`)
+            await api.get(`/order/orders/${id}`)
                 .then((response) => setOrder(response.data))
                 .catch((err) => console.log(err));
 
@@ -67,8 +67,8 @@ export const Order = () => {
     }
 
     const updateOrder = async (e, id) => {
-        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
-        await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
+        await api.patch(`/order/orders/${osId}`, newOrder);
+        await api.get(`/order/orders/${osId}`)
             .then((response) => setOrder(response.data));
 
     }
@@ -131,13 +131,13 @@ export const Order = () => {
             items: itemsEdit
         }
 
-        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
+        await api.patch(`/order/orders/${osId}`, newOrder);
 
     }
 
 
     const OnDeleteItem = async (indexId) => {
-        const newOrderDelete = await axios.get(`http://localhost:5000/api/order/orders/${osId}`);
+        const newOrderDelete = await api.get(`/order/orders/${osId}`);
         const newOrder = newOrderDelete.data;
         delete newOrder.Products;
         delete newOrder.User;
@@ -155,8 +155,8 @@ export const Order = () => {
 
         newOrder.items = itemsAfterDelete;
 
-        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, newOrder);
-        await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
+        await api.patch(`/order/orders/${osId}`, newOrder);
+        await api.get(`/order/orders/${osId}`)
             .then((response) => setOrder(response.data));
     }
 

@@ -4,12 +4,10 @@ import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { IoPersonAddOutline } from 'react-icons/io5';
 import { MdSearch } from 'react-icons/md';
-import axios from 'axios';
 import { FormAddClient } from './FormAddClient';
 import { FormAddDeleteConfirm } from './FormAddDeleteConfirm';
 import { FormEditClient } from './FormEditClient';
-
-const URL = "http://localhost:5000/api/users"
+import api from '../utils/api';
 
 export const FormClient = ({ client }) => {
     const [clients, setClients] = useState([]);
@@ -23,7 +21,7 @@ export const FormClient = ({ client }) => {
  
     useEffect(() => {
         const getClients = async () => {
-            await axios.get(`${URL}`)
+            await api.get(`/users`)
                 .then((response) => setClients(response.data))
                 .catch((err) => console.log(err));
         }
@@ -45,13 +43,13 @@ export const FormClient = ({ client }) => {
 
     const onDelete = async (id) => {
         try {
-            axios.delete(`${URL}/${id}`);
+            api.delete(`/users/${id}`);
         } catch (error) {
             console.log("Falha ao excluir:", error);
         } finally {
             onCloseDeleteModal();
         }
-        axios.get(`${URL}`)
+        api.get(`/users`)
         .then((response) => setClients(response.data));
    
         await getClients();
@@ -59,7 +57,7 @@ export const FormClient = ({ client }) => {
 
     const getClients = async () => {
         try {
-         await axios.get(`${URL}`)
+         await api.get(`/users`)
             .then((response) => setClients(response.data))
         } catch (error) {
             console.log(error);
@@ -78,7 +76,7 @@ export const FormClient = ({ client }) => {
     const onSearch = async () => {
         if(search) {
             try {
-                 await axios.get(`${URL}/q?name=${search}`)
+                 await api.get(`/users/q?name=${search}`)
                 .then((response) => setClients(response.data))
             } catch (error) {
                 console.log(error);

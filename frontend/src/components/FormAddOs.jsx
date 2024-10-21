@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './FormAddClient.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormAddOs = ({ onClose }) => {
 
@@ -13,7 +13,7 @@ export const FormAddOs = ({ onClose }) => {
     let payed = false;
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/users")
+        api.get("/users")
             .then((response) => setUsersData(response.data));
     }, [])
 
@@ -29,7 +29,7 @@ export const FormAddOs = ({ onClose }) => {
             payed,
             UserId: userId,
         }
-        await axios.post("http://localhost:5000/api/order/orders", order)
+        await api.post("/order/orders", order)
             .then((response) => setUsersData(response.data));
         onClose();
     }

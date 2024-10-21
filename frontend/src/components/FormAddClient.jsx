@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './FormAddClient.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormAddClient = ({onClose}) => {
     const [name, setName] = useState("");
@@ -17,7 +17,7 @@ export const FormAddClient = ({onClose}) => {
             password,
             RoleId: 1
         }
-        axios.post("http://localhost:5000/api/users", client);
+        api.get("/users", client);
         onClose();
 
     }

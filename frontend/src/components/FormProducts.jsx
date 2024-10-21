@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FaPlusCircle, FaRegEdit } from 'react-icons/fa';
 import { IoPersonAddOutline } from 'react-icons/io5';
@@ -7,6 +6,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import { FormAddProduct } from './FormAddProduct';
 import { FormDeleteProductConfirm } from './FormDeleteProductConfirm';
 import { FormEditProduct } from './FormEditProduct';
+import api from '../utils/api';
 
 
 export const FormProducts = () => {
@@ -21,7 +21,7 @@ export const FormProducts = () => {
 
     useEffect(() => {
         const getProducts = async () => {
-            await axios.get("http://localhost:5000/api/prod/products")
+            await api.get("/prod/products")
                 .then((response) => setProducts(response.data))
                 .catch((err) => console.log(err));
         }
@@ -42,13 +42,13 @@ export const FormProducts = () => {
 
     const onDelete = (id) => {
         try {
-            axios.delete(`http://localhost:5000/api/prod/products/${id}`);
+            api.delete(`/prod/products/${id}`);
         } catch (error) {
             console.log("Falha ao excluir:", error);
         } finally {
             onCloseDeleteModal();
         }
-        axios.get("http://localhost:5000/api/prod/products")
+        api.get("/prod/products")
             .then((response) => setProducts(response.data));
         if (!products.filter((prod) => prod.id === id)) {
             const newProducts = products.filter((product) => product.id !== id);
@@ -58,9 +58,11 @@ export const FormProducts = () => {
 
     }
 
+    const productList = products;
+
     const getProducts = async () => {
         try {
-            axios.get("http://localhost:5000/api/prod/products")
+            api.get("/prod/products")
                 .then((response) => setProducts(response.data))
         } catch (error) {
             console.log(error);
@@ -79,7 +81,7 @@ export const FormProducts = () => {
     const onSearch = async () => {
         if (search) {
             try {
-                await axios.get(`http://localhost:5000/api/prod/products/q?brand=${search}`)
+                await api.get(`/prod/products/q?brand=${search}`)
                     .then((response) => setProducts(response.data))
             } catch (error) {
                 console.log(error);
@@ -94,7 +96,7 @@ export const FormProducts = () => {
     }
 
     return (
-        <div className='formproduct-container'>
+     <div className='formproduct-container'>
             {open && <FormAddProduct onClose={onClose} />}
             {delReg && <FormDeleteProductConfirm onModalDelete={onModalDelete} onDelete={onDelete} delId={delId} />}
             {updateReg && <FormEditProduct onCloseUpdateForm={onCloseUpdateForm} updateId={updateId} updateStatus={updateStatus} setUpdateStatus={setUpdateStatus} />}
@@ -111,7 +113,8 @@ export const FormProducts = () => {
                     /> <span className='search-icon' onClick={onSearch}><MdSearch /></span>
                 </div>
             </div>
-            <table className="crudProductContainer">
+            { productList !== 'Não há produtos cadastrados!' &&
+                <table className="crudProductContainer">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -123,7 +126,7 @@ export const FormProducts = () => {
                 </thead>
                 <tbody>
                     {
-                        products && products.map((product) => (
+                        productList && productList.map((product) => (
                             <tr key={product.id}>
                                 <td>{product.id}</td>
                                 <td>{product.description}</td>
@@ -136,6 +139,7 @@ export const FormProducts = () => {
 
                 </tbody>
             </table>
+            }
 
         </div >
     )

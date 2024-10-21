@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import './Client.css'
 import { useEffect } from 'react';
-import axios from 'axios';
 import { FormClient } from '../components/FormClient';
 import { Context } from '../context/UserContext';
+import api from '../utils/api';
 
 
 export const Client = () => {
@@ -12,7 +12,7 @@ export const Client = () => {
 
   useEffect(() => {
     const getClients = async () => {
-      await axios.get("http://localhost:5000/api/users")
+      await api.get("/users")
         .then((response) => setClients(response.data));
     }
 

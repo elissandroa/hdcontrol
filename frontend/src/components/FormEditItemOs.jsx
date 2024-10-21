@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './FormEditItemOs.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormEditItemOs = ({ onCloseEditForm, setUpdateStatus, updateStatus, itemForEdit, osId, indexId }) => {
     const [quantity, setQuantity] = useState(0);
@@ -40,7 +40,7 @@ export const FormEditItemOs = ({ onCloseEditForm, setUpdateStatus, updateStatus,
 
 
     const getOrder = async (editId) => {
-        await axios.get(`http://localhost:5000/api/order/orders/${osId}`)
+        await api.get(`/order/orders/${osId}`)
             .then((response) => setOrder(response.data));
     }
 
@@ -68,7 +68,7 @@ export const FormEditItemOs = ({ onCloseEditForm, setUpdateStatus, updateStatus,
         }
         delete order.Products;
         order.items = lista;
-        await axios.patch(`http://localhost:5000/api/order/orders/${osId}`, order);
+        await api.patch(`/order/orders/${osId}`, order);
         setUpdateStatus(!updateStatus);
         onCloseEditForm();
     }

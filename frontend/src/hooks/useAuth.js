@@ -1,31 +1,34 @@
 import api from "../utils/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-
-
 
 export default function useAuth() {
     const [authenticated, setAuthenticated] = useState(false);
     const [admin, setAdmin] = useState(false);
     const navigate = useNavigate();
 
+    const RoleId = localStorage.getItem('RoleId');
 
     useEffect(() => {
 
         const getCheckeduser = async () => {
             const token = localStorage.getItem('token');
-            await axios.get("http://localhost:5000/api/users/checkuser", {
+            await api.get("/users/checkuser", {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
                 },
             }).then((response) => {
-                if (response.data.RoleId === 1) {
+                if (RoleId === 1) {
                     setAdmin(true);
                 }
             });
         }
         getCheckeduser();
+
+        const role = localStorage.getItem('RoleId');
+        if(role == 1){
+            setAdmin(true);
+        }
 
         async function load() {
             const token = localStorage.getItem('token');
@@ -63,11 +66,14 @@ export default function useAuth() {
         setAuthenticated(true)
         localStorage.setItem('token', JSON.stringify(data.token));
         localStorage.setItem('userId', JSON.stringify(data.user.id));
+        localStorage.setItem('RoleId', JSON.stringify(data.user.RoleId));
         navigate("/");
     }
 
     async function logout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('RoleId');
         setAdmin(false);
         setAuthenticated(false);
         navigate("/login");

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './FormEditClient.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setUpdateStatus }) => {
     const [name, setName] = useState("");
@@ -11,7 +11,7 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
 
     useEffect(() => {
         try {
-            axios.get(`http://localhost:5000/api/users/${updateId}`)
+            api.get(`/users/${updateId}`)
                 .then((response) => setClient(response.data));
         } catch (error) {
             console.log(error)
@@ -40,7 +40,7 @@ export const FormEditClient = ({ onCloseUpdateForm, updateId, updateStatus, setU
             phone,
             password
         }
-        axios.patch(`http://localhost:5000/api/users/${updateId}`, client);
+        api.patch(`/users/${updateId}`, client);
         getClients();
         setUpdateStatus(!updateStatus);
         onCloseUpdateForm();

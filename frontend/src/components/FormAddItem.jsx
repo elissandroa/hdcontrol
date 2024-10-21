@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './FormAddItem.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../utils/api'
 
 export const FormAddItem = ({ id, OnSaveEdit }) => {
     const [description, setDescription] = useState([]);
@@ -19,9 +19,9 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
 
     useEffect(() => {
         const getData = async () => {
-            await axios.get(`http://localhost:5000/api/order/orders/${id}`)
+            await api.get(`/order/orders/${id}`)
                 .then((response) => setOrder(response.data));
-            await axios.get("http://localhost:5000/prod/products")
+            await api.get("http://localhost:5000/prod/products")
                 .then((response) => setProducts(response.data));
         }
         getData();
@@ -64,8 +64,8 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
             payed: order.payed,
             items: order.items
         }
-        await axios.patch(`http://localhost:5000/api/order/orders/${id}`, newOrder);
-        await axios.get(`http://localhost:5000/api/order/orders/${id}`)
+        await axios.patch(`/order/orders/${id}`, newOrder);
+        await axios.get(`/order/orders/${id}`)
         .then((response) => setOrder(response.data));
         setVisible(false);
     }

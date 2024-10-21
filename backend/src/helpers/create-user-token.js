@@ -4,7 +4,8 @@ const createUserToken = async (user, req, res) => {
 
     const token = jwt.sign({
         name: user.name,
-        id: user.id
+        id: user.id,
+        RoleId: user.RoleId
     }, process.env.JWT_SECRET)
 
     user.password = undefined;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './FormEditClient.css'
-import axios from 'axios';
+import api from '../utils/api';
 
 export const FormChangeUserPassword = ({ onCloseFormUser, updateId }) => {
     const [name, setName] = useState("");
@@ -17,7 +17,7 @@ export const FormChangeUserPassword = ({ onCloseFormUser, updateId }) => {
     useEffect(() => {
         try {
             setUserId(localStorage.getItem('userId'));
-            axios.get(`http://localhost:5000/api/users/2`)
+            api.get(`/users/2`)
                 .then((response) => setClient(response.data));
         } catch (error) {
             console.log(error)
@@ -46,7 +46,7 @@ export const FormChangeUserPassword = ({ onCloseFormUser, updateId }) => {
 
         console.log(userData);
 
-        const passwordStatus = await axios.post('http://localhost:5000/api/users/password', userData);
+        const passwordStatus = await api.post('/users/password', userData);
         console.log('passordStatus:', passwordStatus.data.message);
 
         if (passwordStatus.data.message) {
@@ -60,7 +60,7 @@ export const FormChangeUserPassword = ({ onCloseFormUser, updateId }) => {
         if (newPassword === confirmNewPassword) {
             setErrorNewPass("");
             delete userData.id
-            axios.patch(`http://localhost:5000/api/users/${id}`, userData);
+            api.patch(`/users/${id}`, userData);
             onCloseFormUser();
         } else {
             setErrorNewPass("Senhas não são iguais!")

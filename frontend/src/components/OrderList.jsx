@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import "./OrderList.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { RiDeleteBin5Line, RiH1 } from 'react-icons/ri';
 import { Context } from "../context/UserContext";
 import { FaPlusCircle } from "react-icons/fa";
+import api from "../utils/api";
 
 export const OrderList = ({loadNew}) => {
 
@@ -18,7 +18,7 @@ export const OrderList = ({loadNew}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/order/orders")
+    api.get("/order/orders")
       .then((response) => setOrders(response.data));
     setOrders(ordersLessPayment);
 
@@ -35,7 +35,7 @@ export const OrderList = ({loadNew}) => {
 
 
   const OnDelete = async (osId) => {
-    await axios.delete(`http://localhost:5000/api/order/orders/${osId}`);
+    await api.delete(`/order/orders/${osId}`);
     setReload(!reload);
     navigate('/');
   }
