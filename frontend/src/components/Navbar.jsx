@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import './Navbar.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Context } from '../context/UserContext'
+import useAuth from '../hooks/useAuth'
 
 export const Navbar = () => {
   const { authenticated, admin, logout } = useContext(Context);
-
   return (
+   
     authenticated && <nav className="nav-container">
       <div className="brand">
         <Link to={'/'}><span className='hd-brand'>HD</span><span className='hd-brand-control'>Control</span></Link>
