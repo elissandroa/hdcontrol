@@ -24,11 +24,20 @@ export const OrderList = ({loadNew}) => {
 
   }, [reload, loadNew])
 
+  let userAdmin = false;
+
   const ordersFilter = orders;
   const user = orders.User; 
   const userId = localStorage.getItem('userId');
 
-  let ordersLessPayment = !admin ? ordersFilter.filter((ordem) => (ordem.payed !== true) && (ordem.User.id == userId)) : ordersFilter;
+  const roleId = localStorage.getItem('RoleId');
+
+
+  if(roleId == 1) {
+    userAdmin = true;
+  }
+
+  let ordersLessPayment = !userAdmin ? ordersFilter.filter((ordem) => (ordem.payed !== true) && (ordem.User.id == userId)) : ordersFilter;
   if (!ordersLessPayment) {
     <p>carregando ...</p>
   }
@@ -49,11 +58,11 @@ export const OrderList = ({loadNew}) => {
         <thead>
           <tr className="th-container">
             <th>O.S</th>
-            {admin && <th>Cliente</th>}
+            {userAdmin && <th>Cliente</th>}
             <th className='td-width-60'>Total</th>
             <th>Status</th>
             <th>Abrir</th>
-            {admin && <th>Excluir</th>}
+            {userAdmin && <th>Excluir</th>}
           </tr>
         </thead>
         <tbody className="tbody-container">
@@ -62,11 +71,11 @@ export const OrderList = ({loadNew}) => {
 
               <tr key={key}>
                 <td>{order.id}</td>
-                {admin && order.User && <td>{order.User.name}</td>}
+                {userAdmin && order.User && <td>{order.User.name}</td>}
                 <td><span>R$ </span>{parseFloat(order.amount).toFixed(2)}</td>
                 <td>{order.status}</td>
                 <Link to={`/order/${order.id}`} ><td className="order-list-link"><AiOutlineFolderOpen /></td></Link>
-                {admin && <td className='td-width-60 btn-delete' onClick={() => OnDelete(order.id)}><RiDeleteBin5Line /></td>}
+                {userAdmin && <td className='td-width-60 btn-delete' onClick={() => OnDelete(order.id)}><RiDeleteBin5Line /></td>}
               </tr>
             ))}
         </tbody>

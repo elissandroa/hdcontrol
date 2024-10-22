@@ -182,6 +182,14 @@ export const Order = () => {
         setItemEditVisible(!itemEditVisible);
     }
 
+    let userAdmin = false
+
+    const roleId = localStorage.getItem('RoleId');
+
+    if(roleId == 1) {
+        userAdmin = true;
+    }
+
 
     return (
        user && order &&  <div>
@@ -192,7 +200,7 @@ export const Order = () => {
 
                 <div className='order-header'>
                     <div className="order-new">
-                        {admin && <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button>}
+                        {userAdmin && <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button>}
                     </div>
                     <div className='os-header-info'>
                         <p>OS: {order.id}</p>
@@ -200,7 +208,7 @@ export const Order = () => {
                         <p>Valor: R$ {parseFloat(order.amount).toFixed(2)} </p>
                     </div>
                     <div>
-                        {admin ? <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button> : <button onClick={() => navigate('/')}>Voltar</button>}
+                        {userAdmin ? <button onClick={() => setOsAdmForm(!osAdmForm)}>Entrega</button> : <button onClick={() => navigate('/')}>Voltar</button>}
                     </div>
                 </div>
                 <table>
@@ -213,8 +221,8 @@ export const Order = () => {
                             <th>Total</th>
                             <th>Serviço</th>
                             <th>Observações</th>
-                            {admin && <th>Editar</th>}
-                            {admin && <th>Excluir</th>}
+                            {userAdmin && <th>Editar</th>}
+                            {userAdmin && <th>Excluir</th>}
                         </tr>}
                     </thead>
                     <tbody>
@@ -227,8 +235,8 @@ export const Order = () => {
                                 <td>R$ {(item.OrderProduct.quantity * item.OrderProduct.price).toFixed(2)}</td>
                                 <td>{item.OrderProduct.servicing}</td>
                                 <td>{item.OrderProduct.notes}</td>
-                                {admin && <td onClick={() => editOsItem(item)}><FaRegEdit /></td>}
-                                {admin && <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>}
+                                {userAdmin && <td onClick={() => editOsItem(item)}><FaRegEdit /></td>}
+                                {userAdmin && <td className='td-width-60 btn-delete' onClick={() => OnDeleteItem(item.id)}><RiDeleteBin5Line /></td>}
                             </tr>
                         ))}
                     </tbody>

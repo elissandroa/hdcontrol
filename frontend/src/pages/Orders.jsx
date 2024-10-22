@@ -24,6 +24,12 @@ export const Orders = ({ orders }) => {
     setOpen(!open);
   }
 
+  let userAdmin = false;
+  const roleId = localStorage.getItem('RoleId');
+  if(roleId == 1){
+    userAdmin = true;
+  }
+
   const updatedId = localStorage.getItem('userId');
   return (
 
@@ -31,12 +37,12 @@ export const Orders = ({ orders }) => {
     <div className="orders-container">
       <div className='button-add-order-service'>
         {visible && <FormAddOs onClose={onClose} />}
-        {!admin && orders.length === 0 && <div className="text-orders-not-found">
+        {!userAdmin && orders.length === 0 && <div className="text-orders-not-found">
           <h2>Não há Ordems de Serviço em execução no momento...</h2>
         </div>}
         {open && <FormChangeUserPassword onCloseFormUser={onCloseFormUser} updateId={updatedId} />}
-        {!admin && <button className="user-pass-icon" onClick={() => setOpen(!open)}><GoPasskeyFill /></button>}
-        {orders ? admin && <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button> : "Não há Ordems de Serviço em execução no momento!"}
+        {!userAdmin && <button className="user-pass-icon" onClick={() => setOpen(!open)}><GoPasskeyFill /></button>}
+        {orders ? userAdmin && <button onClick={() => setVisible(!visible)}><FaPlusCircle /></button> : "Não há Ordems de Serviço em execução no momento!"}
       </div>
       {authenticated && orders.length > 0 && < OrderList orders={orders} loadNew={loadNew} />}
     </div>

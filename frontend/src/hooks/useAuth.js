@@ -5,15 +5,18 @@ import { useNavigate } from 'react-router-dom';
 export default function useAuth() {
     const [authenticated, setAuthenticated] = useState(false);
     const [admin, setAdmin] = useState(false);
-    const [roleId, setRoleId] = useState(0);
     const navigate = useNavigate();
 
-    
+
 
     useEffect(() => {
 
         const getCheckeduser = async () => {
             const token = localStorage.getItem('token');
+            const RoleId = localStorage.getItem('RoleId');
+            if(RoleId == 1){
+                setAdmin(true);
+            }
             await api.get("/users/checkuser", {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
@@ -22,12 +25,16 @@ export default function useAuth() {
                 response.data;
             });
 
-            
+
         }
         getCheckeduser();
-        
+
         async function load() {
             const token = localStorage.getItem('token');
+            const RoleId = localStorage.getItem('RoleId');
+            if (RoleId == 1) {
+                setAdmin(true);
+            }
             setAdmin(true);
             if (token) {
                 api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
@@ -65,7 +72,7 @@ export default function useAuth() {
         localStorage.setItem('token', JSON.stringify(data.token));
         localStorage.setItem('userId', JSON.stringify(data.user.id));
         const RoleId = localStorage.setItem('RoleId', JSON.stringify(data.user.RoleId));
-        if(RoleId == 1) {
+        if (RoleId == 1) {
             setAdmin(true);
         }
         navigate("/");

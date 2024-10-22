@@ -21,7 +21,7 @@ export const FormAddItem = ({ id, OnSaveEdit }) => {
         const getData = async () => {
             await api.get(`/order/orders/${id}`)
                 .then((response) => setOrder(response.data));
-            await api.get("http://localhost:5000/prod/products")
+            await api.get("/prod/products")
                 .then((response) => setProducts(response.data));
         }
         getData();
