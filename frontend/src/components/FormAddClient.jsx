@@ -15,9 +15,9 @@ export const FormAddClient = ({onClose}) => {
             email,
             phone,
             password,
-            RoleId: 1
+            RoleId: 2
         }
-        api.get("/users", client);
+        api.post("/users", client);
         onClose();
 
     }
