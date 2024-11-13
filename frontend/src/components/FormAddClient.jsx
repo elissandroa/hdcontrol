@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import './FormAddClient.css'
 import api from '../utils/api';
 
-export const FormAddClient = ({onClose}) => {
+export const FormAddClient = ({ onClose }) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassowrd] = useState("");
-   
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const client = {
             name,
@@ -17,12 +17,11 @@ export const FormAddClient = ({onClose}) => {
             password,
             RoleId: 2
         }
-        api.post("/users", client);
+        await api.post("/users", client);
         onClose();
-
     }
-    
-    
+
+
 
 
     return (
