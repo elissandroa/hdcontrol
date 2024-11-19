@@ -24,7 +24,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const orderItem = {
             dataEntrega,
@@ -34,7 +34,7 @@ export const FormOsAdm = ({ onCloseAdmForm, setUpdateStatus, updateStatus, itemF
         order.dataEntrega = dataEntrega;
         order.status = status;
         order.payed = payed === "true" ? true : false;
-        api.patch(`/order/orders/${osId}`, order);
+        await api.patch(`/order/orders/${osId}`, order);
         setUpdateStatus(!updateStatus);
         onCloseAdmForm();
         if(payed === "true"){

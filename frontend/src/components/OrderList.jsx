@@ -61,6 +61,8 @@ export const OrderList = ({loadNew}) => {
             {userAdmin && <th>Cliente</th>}
             <th className='td-width-60'>Total</th>
             <th>Status</th>
+            <th>Entrega</th>
+            <th>Atualização</th>
             <th>Abrir</th>
             {userAdmin && <th>Excluir</th>}
           </tr>
@@ -74,6 +76,8 @@ export const OrderList = ({loadNew}) => {
                 {userAdmin && order.User && <td>{order.User.name}</td>}
                 <td><span>R$ </span>{parseFloat(order.amount).toFixed(2)}</td>
                 <td>{order.status}</td>
+                <td>{order.dataEntrega}</td>
+                <td>{order.updatedAt}</td>
                 <Link to={`/order/${order.id}`} ><td className="order-list-link"><AiOutlineFolderOpen /></td></Link>
                 {userAdmin && <td className='td-width-60 btn-delete' onClick={() => OnDelete(order.id)}><RiDeleteBin5Line /></td>}
               </tr>
