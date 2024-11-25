@@ -63,6 +63,7 @@ export const FormAddItemOs = ({ onClose, setUpdateStatus, updateStatus, osId }) 
         delete newOrder.amount;
         delete newOrder.Products;
         delete newOrder.id;
+        delete newOrder.status;
         if (description === "" || description === "Selecione um produto") {
             setError("Escolha um produto!");
             return;
