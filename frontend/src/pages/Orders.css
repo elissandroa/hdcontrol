@@ -5,6 +5,10 @@
     margin-bottom: 50px;
 }
 
+.orders-container button {
+    margin-top: 2rem;
+}
+
 .button-add-order-service{
     height: 30px;
     display: flex;
