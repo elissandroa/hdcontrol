@@ -31,7 +31,7 @@ module.exports = class OrderRepository {
     }
 
     static async getOrdersRepository() {
-        const orders = await Order.findAll({order:[['createdAt', 'DESC']], include: [Product, User] });
+        const orders = await Order.findAll({ order: [['createdAt', 'DESC']], include: [Product, User] });
         return orders;
     }
 
@@ -52,22 +52,22 @@ module.exports = class OrderRepository {
 
         const orderItems = await OrderProduct.findAll({ where: { idOrder: id } });
 
-        if(order.items){
+        if (order.items) {
             for (let i = 0; i < order.items.length; i++) {
                 order.items[i].id = undefined;
                 const idProduct = order.items[i].idProduct;
                 const idOrder = order.items[i].idOrder;
                 const servicing = order.items[i].servicing;
                 const notes = order.items[i].notes;
-    
-    
+
+
                 const products = {
                     quantity: order.items[i].quantity,
                     price: order.items[i].price,
                     servicing: order.items[i].servicing,
                     notes: order.items[i].notes
                 }
-    
+
                 if (orderItems[i] !== undefined) {
                     await OrderProduct.update(products, { where: { idOrder: idOrder, idProduct: idProduct } });
                 } else {
@@ -75,13 +75,13 @@ module.exports = class OrderRepository {
                     const productItem = await Product.findByPk(order.items[i].idProduct);
                     await updateOrder.addProduct(productItem, { through: { quantity: order.items[i].quantity, price: order.items[i].price, servicing: order.items[i].servicing, notes: order.items[i].notes } });
                 }
-    
+
             }
         }
         let listProductsDb = [];
         let listProductReq = [];
 
-        if(order.items){
+        if (order.items) {
             if (orderItems.length > order.items.length) {
                 for (let i = 0; i < orderItems.length; i++) {
                     listProductsDb.push(orderItems[i].dataValues.idProduct);
@@ -90,15 +90,15 @@ module.exports = class OrderRepository {
                     listProductReq.push(order.items[i].idProduct);
                 }
                 let prodToDelete = listProductsDb.filter(item => !listProductReq.includes(item));
-    
+
                 for (let i = 0; i < prodToDelete.length; i++) {
                     OrderProduct.destroy({ where: { idOrder: id, idProduct: prodToDelete[i] } })
                 }
-    
+
             }
         }
 
-        if(order.items){
+        if (order.items) {
             if (orderItems.length < order.items.length) {
 
                 for (let i = 0; i < order.items.length; i++) {
@@ -106,10 +106,10 @@ module.exports = class OrderRepository {
                 }
                 let prodToAdd = listProductReq.filter(item => !listProductsDb.includes(item));
                 for (let i = 0; i < prodToAdd.length; i++) {
-    
+
                     const updateOrder = await Order.findByPk(id);
                     const productItem = await Product.findByPk(prodToAdd[i]);
-    
+
                     await updateOrder.addProduct(productItem, { through: { quantity: order.items[i].quantity, price: order.items[i].price, servicing: order.items[i].servicing, notes: order.items[i].notes } });
                 }
             }
@@ -117,14 +117,12 @@ module.exports = class OrderRepository {
 
         let total = 0;
 
-        if(order.items){
+        if (order.items) {
             for (let i = 0; i < order.items.length; i++) {
                 total += order.items[i].price * order.items[i].quantity;
             }
-    
+            order.amount = total;
         }
-        
-        order.amount = total;
 
         await Order.update(order, { where: { id: id } });
 
